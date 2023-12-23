@@ -28,7 +28,7 @@ CREATE TABLE posts (
 CREATE TABLE post_likes (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  topic_id INTEGER REFERENCES topics(id) ON DELETE CASCADE
+  post_id INTEGER REFERENCES posts(id) ON DELETE CASCADE
 );
 
 -- Creating table 'post_comments'
