@@ -18,24 +18,14 @@
 </head>
 
 <body>
-  <table>
-    <thead>
-      <tr>
-        <th scope="col">Title</th>
-        <th scope="col">URL</th>
-        <th scope="col">Description</th>
-      </tr>
-    </thead>
-    <tbody>
       <% for (let post of posts) { %>
-        <tr>
-          <td><p><%= post.title %></p></td>
-          <td><p><%= post.url %></p></td>
-          <td><p><%= post.description %></p></td>
-        </tr>
+        <article>
+          <h1><%= post.title %></h1>
+          <h3><%= post.topic %></h3>
+          <p><%= post.description %></p>
+          <button><a href="/posts/<%= post.id %>">Check it Out</a></button>
+        </article>
       <% } %>
-    </tbody>
-  </table>
 </body>
 
 </html>
