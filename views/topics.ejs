@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lattice - Explore Topics</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        header {
+            background-color: #f8f8f8;
+            padding: 10px 0;
+            border-bottom: 1px solid #e7e7e7;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            text-align: center;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            padding: 14px 16px;
+        }
+        nav ul li a:hover {
+            color: #017572;
+        }
+        #username {
+            float: right;
+            margin-right: 20px;
+        }
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+        .topic {
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-gap: 20px;
+            padding: 20px;
+        }
+        .grid-item {
+            background-color: #e7e7e7;
+            border-radius: 10px;
+            padding: 20px;
+            height: 150px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/explore">Explore</a></li>
+                <li><a href="/create">Create</a></li>
+                <li><a href="/search">Search</a></li>
+                <li id="username">username</li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="topic">
+            <div class="topic">TOPIC</div>
+            <div class="grid-container">
+                <% /* Dynamic content would be loaded here using EJS tags */ %>
+                <% for(let i = 0; i < posts.length; i++) { %>
+                    <div class="grid-item">
+                        <div><%= posts[i].tag %></div>
+                        <div><%= posts[i].title %></div>
+                        <% /* Other post details can be added here */ %>
+                    </div>
+                <% } %>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
+
+
+///
