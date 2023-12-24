@@ -8,6 +8,7 @@
 const express = require('express');
 const router  = express.Router();
 
+//localhost:8080/users/ is the endpoint bz we tell app to use /users as start for this file i.e app.use('/users', usersRoutes);
 router.get('/', (req, res) => {
   res.render('users');
 });

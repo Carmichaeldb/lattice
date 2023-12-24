@@ -25,7 +25,7 @@ INSERT INTO post_comments (post_id, commenter_id, comment_text, comment_date) VA
 (5, 1, 'History is full of such mysteries, but I think these are more conspiracy!', CURRENT_TIMESTAMP);
 
 -- Inserting data into 'post_likes' table
-INSERT INTO post_likes (post_id, user_id) VALUES
+INSERT INTO post_likes (user_id, topic_id) VALUES
 (1, 2),
 (2, 3),
 (3, 4),
