@@ -1,17 +1,17 @@
 <nav>
   <label for="lattice"> LA#ICE</label>
-  <form method="POST" action="/posts">
+  <form method="POST" action="/">
     <button type="submit">Home</button>
   </form>
   <form method="POST" action="/posts/topics">
     <button type="submit">Topics</button>
   </form>
-  <input type="text" name="search" placeholder="Search" style="width: 300px;" />
+  <input id="searchId" type="text" name="search" placeholder="Search" style="width: 300px;" />
   <form method="POST" action="/user/new">
     <button type="submit">Create</button>
   </form>
   <img src="../public/images/user1.png">
- <form method="POST" action="/user/:user_id">
+  <form method="POST" action="/user/:user_id">
     <button type="submit">Username</button>
   </form>
 </nav>
