@@ -2,23 +2,29 @@
 <html lang="en">
 
 <%- include('./partials/_head') %>
-<%- include('nav') %>
+  <%- include('nav') %>
 
-<body>
-  <div class="d-flex flex-wrap container">
-      <% for (let post of posts) { %>
-        <div class="card box-shadow d-flex flex-column">
-          <div class="card-body flex-grow-1">
-            <h1 class="card-title mb-2"><%= post.title %></h1>
-            <h3 class="card-subtitle mb-3 text-muted"><%= post.topic %></h3>
-            <p class="card-text"><%= post.description %></p>
+    <body>
+      <div class="d-flex flex-wrap container">
+        <% for (let post of posts) { %>
+          <div class="card box-shadow d-flex flex-column">
+            <div class="card-body flex-grow-1">
+              <h1 class="card-title mb-2">
+                <%= post.title %>
+              </h1>
+              <h3 class="card-subtitle mb-3 text-muted">
+                <%= post.topic %>
+              </h3>
+              <p class="card-text">
+                <%= post.description %>
+              </p>
+            </div>
+            <div class="mt-auto p-2">
+              <a href="/posts/<%= post.id %>" class="btn btn-primary">Check it Out</a>
+            </div>
           </div>
-          <div class="mt-auto p-2">
-            <a href="/posts/<%= post.id %>" class="btn btn-primary">Check it Out</a>
-          </div>
-        </div>
-      <% } %>
-  </div>
-</body>
+          <% } %>
+      </div>
+    </body>
 
 </html>
