@@ -11,12 +11,20 @@ const app = express();
 app.set('view engine', 'ejs');
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
-app.use('/styles', sassMiddleware({
+
+app.use(sassMiddleware({
   source: __dirname + '/styles',
   destination: __dirname + '/public/styles',
-  isSass: false
+  isSass: false,
+  outputStyle: 'compressed',
+  prefix: '/styles', // Where prefix is at <link rel="stylesheets" href="stylesheets/main.css"/>
 }));
+
+
+
 app.use(express.static('public'));
+app.use('/styles', express.static('styles'));
+
 
 // Mount all resource routes
 app.use('/users', usersRoutes);
