@@ -72,19 +72,19 @@
     </header>
     
     <main>
-        <% topicsWithPosts.forEach(topicWithPosts => { %>
-            <section class="topic-section">
-                <h2 class="topic-title"><%= topicWithPosts.topic_name %></h2>
+        <% topicsWithPosts.forEach(topic => { %>
+            <div class="topic">
+                <h2><%= topic.topic_name %></h2>
                 <div class="grid-container">
-                    <% topicWithPosts.posts.forEach(post => { %>
+                    <% topic.posts.forEach(post => { %>
                         <div class="grid-item">
-                            <div><%= post.title %></div>
-                            <div><%= post.description %></div>
-                            <!-- Include other post details you want to display -->
+                            <h3><%= post.title %></h3>
+                            <p><%= post.description %></p>
+                            <!-- More details about the post -->
                         </div>
                     <% }) %>
                 </div>
-            </section>
+            </div>
         <% }) %>
     </main>
 </body>
