@@ -72,22 +72,21 @@
     </header>
     
     <main>
-        <section id="topic">
-            <div class="topic">TOPIC</div>
-            <div class="grid-container">
-                <% /* Dynamic content would be loaded here using EJS tags */ %>
-                <% for(let i = 0; i < posts.length; i++) { %>
-                    <div class="grid-item">
-                        <div><%= posts[i].tag %></div>
-                        <div><%= posts[i].title %></div>
-                        <% /* Other post details can be added here */ %>
-                    </div>
-                <% } %>
-            </div>
-        </section>
+        <% topicsWithPosts.forEach(topicWithPosts => { %>
+            <section class="topic-section">
+                <h2 class="topic-title"><%= topicWithPosts.topic_name %></h2>
+                <div class="grid-container">
+                    <% topicWithPosts.posts.forEach(post => { %>
+                        <div class="grid-item">
+                            <div><%= post.title %></div>
+                            <div><%= post.description %></div>
+                            <!-- Include other post details you want to display -->
+                        </div>
+                    <% }) %>
+                </div>
+            </section>
+        <% }) %>
     </main>
 </body>
 </html>
 
-
-///

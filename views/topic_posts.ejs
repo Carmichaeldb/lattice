@@ -1,0 +1,8 @@
+<!-- topic_posts.ejs -->
+<% for(let i = 0; i < posts.length; i++) { %>
+  <div class="grid-item">
+      <div>Post Title: <%= posts[i].title %></div>
+      <div>Post Content: <%= posts[i].content %></div>
+      <% /* Other post details can be added here */ %>
+  </div>
+<% } %>
