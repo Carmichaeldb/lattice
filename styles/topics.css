@@ -1,41 +1,4 @@
-body {
-  font-family: 'Times New Roman', serif;
-  font-size: 24px;
-  font-weight: normal;
-}
-header {
-  background-color: #ffffff;
-  padding: 10px 0;
-  border-bottom: 1px solid #e7e7e7;
-}
-nav ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  text-align: center;
-}
-nav ul li {
-  display: inline;
-  margin-right: 20px;
-}
-nav ul li a {
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
-  padding: 14px 16px;
-}
-nav ul li a:hover {
-  color: #017572;
-}
-#username {
-  float: right;
-  margin-right: 20px;
-}
-main {
-  padding: 20px;
-  text-align: center;
-}
+
 .topic {
 font-size: 24px;
 margin-bottom: 40px; /* Updated margin-bottom */
