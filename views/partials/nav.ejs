@@ -1,23 +1,24 @@
+<style>
+  @import url('/styles/nav.css');
+</style>
+
 <nav class="navigation">
   <div class="nav-container">
     <div class="brand">
       <a href="/" id="lattice">La#ice</a>
     </div>
     <div class="nav-links">
-      <form method="GET" action="/" class="nav-form">
-        <button type="submit">Home</button>
+      <a href="/" class="nav-button">Home</a>
+      <a href="/topics" class="nav-button">Topics</a>
+      <form method="GET" action="/search" class="nav-search-form">
+        <input type="text" name="search" placeholder="Search" class="nav-search-input"/>
+        <button type="submit" class="nav-search-button">Search</button>
       </form>
-      <a href="/topics">Topics</a>
-      <input type="text" name="search" placeholder="Search" class="nav-search"/>
-      <form method="POST" action="/user/new" class="nav-form">
-        <button type="submit">Create</button>
-      </form>
-      <form method="POST" action="/user/user_id" class="nav-form">
-        <button type="submit">Username</button>
-      </form>
+      <a href="/user/new" class="nav-button">Create</a>
+      <a href="/user/user_id" class="nav-button">Username</a>
     </div>
     <div class="nav-user">
-      <img src="../public/images/user1.png" alt="User Profile">
+      <img src="/images/user1.png" alt="User Profile" class="nav-user-img">
     </div>
   </div>
 </nav>
