@@ -3,7 +3,8 @@ const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
 const usersRoutes = require('./routes/users');
-const topicsRoutes = require('./routes/topics'); // Import the topics route module
+const topicsRoutes = require('./routes/topics');
+const db = require('./db/connection'); // Include your database connection
 
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -17,22 +18,26 @@ app.use(sassMiddleware({
   destination: __dirname + '/public/styles',
   isSass: false,
   outputStyle: 'compressed',
-  prefix: '/styles', // Where prefix is at <link rel="stylesheets" href="stylesheets/main.css"/>
+  prefix: '/styles',
 }));
-
-
 
 app.use(express.static('public'));
 app.use('/styles', express.static('styles'));
 
-
 // Mount all resource routes
 app.use('/users', usersRoutes);
-app.use('/topics', topicsRoutes); // Use the topics routes
+app.use('/topics', topicsRoutes);
 
 // Home page route
-app.get('/', (req, res) => {
-  res.render('index');
+app.get('/', async (req, res) => {
+  try {
+    const result = await db.query('SELECT * FROM posts ORDER BY created_at DESC');
+    const posts = result.rows;
+    res.render('index', { posts });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
 });
 
 app.listen(PORT, () => {
