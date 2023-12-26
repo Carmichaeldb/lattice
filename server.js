@@ -2,6 +2,7 @@ require('dotenv').config();
 const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
+const session = require('express-session');
 const usersRoutes = require('./routes/users');
 const topicsRoutes = require('./routes/topics');
 const db = require('./db/connection'); // Include your database connection
@@ -13,6 +14,15 @@ app.set('view engine', 'ejs');
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
 
+//Session- middleware
+app.use(session({
+  secret: process.env.SESSION_SECRET, // Ensure you have SESSION_SECRET in your .env file
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false, httpOnly: true, maxAge: 24 * 60 * 60 * 1000 }
+}));
+
+//SCSS middle ware -- disabled **
 app.use(sassMiddleware({
   source: __dirname + '/styles',
   destination: __dirname + '/public/styles',
