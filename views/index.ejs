@@ -12,7 +12,15 @@
 
   <main>
     <h1>Welcome to La#ice</h1>
-    <!-- The rest of your landing page content goes here -->
+    <div class="grid-container">
+      <% posts.forEach(post => { %>
+        <div class="grid-item">
+          <h3><%= post.title %></h3>
+          <p><%= post.description %></p>
+          <!-- Other details about the post -->
+        </div>
+      <% }) %>
+    </div>
   </main>
 
   <script src="/vendor/jquery-3.0.0.js"></script>
