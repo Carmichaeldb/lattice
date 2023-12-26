@@ -40,6 +40,25 @@ app.get('/', async (req, res) => {
   }
 });
 
+
+// search route
+app.get('/search', async (req, res) => {
+  const searchTerm = req.query.search;
+  try {
+    // Use ILIKE for case-insensitive search
+    const result = await db.query("SELECT * FROM posts WHERE title ILIKE $1 OR description ILIKE $1 ORDER BY created_at DESC", [`%${searchTerm}%`]);
+    const posts = result.rows;
+    res.render('index', { posts }); // Reuse the index view for displaying posts
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+});
+
+
+
+
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
