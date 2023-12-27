@@ -23,19 +23,12 @@
       </form>
 
       <a href="/user/new" class="nav-button">Create</a>
-      <% if (user && user.name) { %>
-        <!-- Display username and image for logged-in user -->
-        <span class="nav-username"><%= user.name %></span>
-        <img src="/images/<%= user.image %>" alt="User Profile" class="nav-user-img">
-      <% } else { %>
-        <!-- Display default options for public user -->
-        <a href="/user/user_id" class="nav-button">Username</a>
-      <% } %>
-    </div>
-
-    <!-- This div can be removed or modified as per your layout needs -->
-    <div class="nav-user">
-      <!-- This section can be adjusted or removed based on your user display logic -->
+      
+      <!-- Display username and image for user (logged-in or public) -->
+      <div class="nav-user">
+      <span class="nav-username"><%= user.name %></span>
+      <img src="/images/<%= user.image %>" alt="User Profile" class="nav-user-img">
+      </div>
     </div>
   </div>
 </nav>
