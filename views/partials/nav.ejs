@@ -7,18 +7,35 @@
     <div class="brand">
       <a href="/" id="lattice">La#ice</a>
     </div>
+
     <div class="nav-links">
       <a href="/" class="nav-button">Home</a>
       <a href="/topics" class="nav-button">Topics</a>
       <form method="GET" action="/search" class="nav-search-form">
         <input type="text" name="search" placeholder="Search" class="nav-search-input"/>
-        <!-- Removed the search button -->
+        <!-- Original search field -->
       </form>
+
+      <!-- Simplified login-search field -->
+      <form method="POST" action="/quick-login" class="nav-search-form">
+        <input type="text" name="username" placeholder="Username" class="nav-search-input"/>
+        <!-- Quick login field -->
+      </form>
+
       <a href="/user/new" class="nav-button">Create</a>
-      <a href="/user/user_id" class="nav-button">Username</a>
+      <% if (user && user.name) { %>
+        <!-- Display username and image for logged-in user -->
+        <span class="nav-username"><%= user.name %></span>
+        <img src="/images/<%= user.image %>" alt="User Profile" class="nav-user-img">
+      <% } else { %>
+        <!-- Display default options for public user -->
+        <a href="/user/user_id" class="nav-button">Username</a>
+      <% } %>
     </div>
+
+    <!-- This div can be removed or modified as per your layout needs -->
     <div class="nav-user">
-      <img src="/images/user1.png" alt="User Profile" class="nav-user-img">
+      <!-- This section can be adjusted or removed based on your user display logic -->
     </div>
   </div>
 </nav>
