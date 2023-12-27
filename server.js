@@ -25,7 +25,7 @@ app.use(session({
 // Middleware to establish a default public user profile
 app.use((req, res, next) => {
   if (!req.session.user) {
-    req.session.user = { name: 'Public', image: 'default.png' };
+    req.session.user = { name: 'Public', image: 'PublicUserPicture.png' };
   }
   next();
 });
