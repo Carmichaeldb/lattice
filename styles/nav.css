@@ -10,6 +10,19 @@
   align-items: center;
 }
 
+.nav-left-group {
+  display: flex;
+  align-items: center;
+}
+
+
+.nav-links-left {
+  display: flex;
+  flex-direction: column; /* Stack children of nav-links-left vertically */
+  align-items: flex-start; /* Align items to the start (left) */
+}
+
+
 .brand a {
   background-color: #b2b28e;
   padding: 10px;
@@ -19,9 +32,17 @@
   text-decoration: none;
 }
 
+.nav-user-right {
+  display: flex;
+  align-items: center;
+}
+
+
+
 .nav-links {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
 }
 
 .nav-button {
@@ -59,10 +80,10 @@
 }
 
 .nav-user-input {
-  border-radius: 45px;
+  border-radius: 5px;
   padding: 0.5rem;
-  margin-right: 0.5rem;
-  width: 200px;
+  margin-right: 0.9rem;
+  width: 300px;
 }
 
 .nav-search-button {
@@ -83,144 +104,8 @@
 .nav-user-img {
   height: 40px;
   border-radius: 50%;
+  margin-right: 10px;
 }
 /* Existing styles */
 
-/* Media query for screens at or below 1060px */
-@media (max-width: 1060px) {
-  
-  .nav-container {
-    justify-content: flex-start;
-    flex-wrap: wrap;
-  }
 
-  .brand {
-    flex-basis: 100%; /* Adjust this value as needed */ 
-    order: 1; /* Keep 'brand' on top */
-  }
-
-  .nav-search-form, 
-  .nav-user-form {
-    flex-basis: 50%;
-    order: 2; 
-    margin-top: 10px; 
-  }
-
-  .nav-links {
-    margin-top: 10px;
-    width: 100%;
-    justify-content: center; 
-    order: 3; 
-  }
-
-  .nav-user {
-    flex-basis: 10%;
-    order: 4;
-
-  }
-
-  .nav-user-img {
-    margin-right: 10px; /* Add space between image and username */
-  }
-
-  .nav-button {
-    margin: 5px 0; 
-  }
-}
-
-@media (max-width: 875px) and (min-width: 421px) {
-  .nav-container {
-      flex-wrap: wrap; /* Allow elements to wrap */
-      padding: 0; /* No padding on the container */
-  }
-
-  .brand {
-      /* No changes to the brand */
-  }
-
-  .nav-search-form, .nav-user-form {
-      display: flex; /* Enable flexbox */
-      flex-direction: column; /* Stack elements vertically */
-      width: 300px; /* Fixed width for the forms */
-      margin-top: 5px;
-      margin-bottom: 5px;
-      padding: 5px 10px; /* Padding for internal spacing */
-      box-sizing: border-box; /* Include padding and border in width */
-  }
-
-  .nav-search-input, .nav-user-input {
-      width: calc(100% - 10px); /* Adjust width to fit within forms */
-      margin-bottom: 5px; /* Space between inputs when they wrap */
-  }
-
-  .nav-links  {
-    width: 100%; /* Full width for links and user info */
-    margin-top: 5px;
-    margin-bottom: 5px;
-    padding: 5px 10px;
-}
-
-   .nav-user {
-      margin-top: 5px;
-      margin-bottom: 5px;
-      padding: 5px 10px;
-  }
-
-  .nav-button {
-      padding: 5px;
-      margin: 3px 0;
-  }
-
-  .nav-links a, .nav-user {
-      display: block; /* Stack these elements vertically */
-  }
-
-  .nav-user {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: auto;
-      margin: 0 auto;
-  }
-
-  .nav-user .nav-username, .nav-user-img {
-      order: 1;
-      margin-bottom: 5px;
-  }
-
-  .nav-user-img {
-      order: 2;
-  }
-}
-
-
-
-/* Media query for adjusting layout at 1180px and below */
-@media (max-width: 420px) {
-  .nav-links {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .nav-button {
-    width: 100%;
-    margin: 5px 0;
-  }
-
-  .nav-user {
-    width: 100%;
-
-    margin-top: 10px;
-  }
-
-  .nav-search-input,
-  .nav-user-input {
-    display: flex;
-    flex-grow: 1;
-  }
-  .nav-user {
-    flex-basis: 100%;
-    order: 4;
-  }
-
-}

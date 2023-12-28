@@ -4,30 +4,35 @@
 
 <nav class="navigation">
   <div class="nav-container">
-    <div class="brand">
-      <a href="/" id="lattice">La#ice</a>
+    <!-- Group for brand and navigation links on the left -->
+    <div class="nav-left-group">
+      <div class="brand">
+        <a href="/" id="lattice">La#ice</a>
+      </div>
+
+      <div class="nav-links-left">
+        <a href="/" class="nav-button">Home</a>
+        <a href="/topics" class="nav-button">Topics</a>
+        <a href="/user/new" class="nav-button">Create</a>
+      </div>
     </div>
 
+    <!-- Container for the Search form -->
     <div class="nav-links">
-      <a href="/" class="nav-button">Home</a>
-      <a href="/topics" class="nav-button">Topics</a>
       <form method="GET" action="/search" class="nav-search-form">
         <input type="text" name="search" placeholder="Search" class="nav-search-input"/>
-        <!-- Original search field -->
       </form>
+    </div>
 
-      <!-- Simplified login-search field -->
+    <!-- Group for user form and user info on the right -->
+    <div class="nav-user-right">
       <form method="POST" action="/quick-login" class="nav-user-form">
         <input type="text" name="username" placeholder="Username" class="nav-user-input"/>
-        <!-- Quick login field -->
       </form>
 
-      <a href="/user/new" class="nav-button">Create</a>
-      
-      <!-- Display username and image for user (logged-in or public) -->
       <div class="nav-user">
-      <span class="nav-username"><%= user.name %></span>
-      <img src="/images/<%= user.image %>" alt="User Profile" class="nav-user-img">
+        <span class="nav-username"><%= user.name %></span>
+        <img src="/images/<%= user.image %>" alt="User Profile" class="nav-user-img">
       </div>
     </div>
   </div>
