@@ -102,10 +102,80 @@
   /* Add other styles if you want to change the font size, color, etc. */
 }
 .nav-user-img {
-  height: 40px;
+  height: 70px;
   border-radius: 50%;
   margin-right: 10px;
 }
-/* Existing styles */
 
+@media (max-width: 1060px) {
+
+  .nav-user-form-container {
+    display: block; /* Show the form on smaller screens */
+    width: 100%; /* Adjust width as needed */
+    margin-top: 20px;
+    }
+  
+    .nav-links {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+    }
+
+    .nav-user-right{
+      order: 3;
+    }
+    
+    .nav-search-form {
+        order: 1;
+        width: 100%; /* Optional: Adjust width as needed */
+    }
+    .nav-user-form {
+      flex-direction: column-reverse;
+      margin-bottom: 0px;
+        order: 2; /* Place the user form below the search form */
+        width: 100%; /* Optional: Adjust width as needed */
+    }
+
+    .nav-user {
+      flex-direction: column-reverse;
+      align-items: center;
+      margin-bottom: 7px;
+      /* Additional styles as necessary */
+    }
+
+    .nav-username {
+      margin-right: 10px; /* Adjust the margin as needed */
+      margin-top: 7px;
+      /* Add other styles if you want to change the font size, color, etc. */
+    }
+    /* Additional styles for smaller screens */
+}
+
+
+@media (max-width: 750px) {
+  .nav-container {
+    flex-wrap: wrap; /* Allow flex items to wrap */
+    justify-content: space-between; /* Space out flex items */
+  }
+
+  .nav-left-group, .nav-user-right {
+    flex-basis: auto; /* Take up auto width */
+    flex-grow: 1; /* Grow to fill the space */
+    flex-shrink: 10; /* Don't shrink below their content size */
+    max-width: 50%; /* Maximum of half the parent width */
+  }
+
+  .nav-links {
+    order: 3; /* Goes below nav-left-group and nav-user-right */
+    width: 100%; /* Take the full width of the flex container */
+    margin-top: 10px; /* Space from the elements above */
+  }
+
+  /* If you want the .nav-user-right to not grow to fill the space, set a max-width */
+  .nav-user-right {
+
+    max-width: fit-content; /* Adjust this value as needed */
+    margin-top: 10px;
+    margin-left: auto; /* Push it to the right */
+  }
+}
 

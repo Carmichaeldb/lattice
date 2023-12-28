@@ -22,14 +22,17 @@
       <form method="GET" action="/search" class="nav-search-form">
         <input type="text" name="search" placeholder="Search" class="nav-search-input"/>
       </form>
+
+      <!-- nav-user-form placed here for smaller screens -->
+      <div class="nav-user-form-container">
+        <form method="POST" action="/quick-login" class="nav-user-form">
+          <input type="text" name="username" placeholder="Username" class="nav-user-input"/>
+        </form>
+      </div>
     </div>
 
-    <!-- Group for user form and user info on the right -->
+    <!-- Group for user info on the right -->
     <div class="nav-user-right">
-      <form method="POST" action="/quick-login" class="nav-user-form">
-        <input type="text" name="username" placeholder="Username" class="nav-user-input"/>
-      </form>
-
       <div class="nav-user">
         <span class="nav-username"><%= user.name %></span>
         <img src="/images/<%= user.image %>" alt="User Profile" class="nav-user-img">
