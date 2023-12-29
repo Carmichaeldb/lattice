@@ -47,8 +47,6 @@ app.use('/users', usersRoutes);
 app.use('/topics', topicsRoutes);
 
 // Home page && UserList route
-
-// Home page route
 app.get('/', async (req, res) => {
   try {
     const postsResult = await db.query('SELECT * FROM posts ORDER BY created_at DESC');
@@ -69,14 +67,20 @@ app.get('/', async (req, res) => {
 app.get('/search', async (req, res) => {
   const searchTerm = req.query.search;
   try {
-    const result = await db.query("SELECT * FROM posts WHERE title ILIKE $1 OR description ILIKE $1 ORDER BY created_at DESC", [`%${searchTerm}%`]);
-    const posts = result.rows;
-    res.render('index', { posts, user: req.session.user });
+    const postsResult = await db.query("SELECT * FROM posts WHERE title ILIKE $1 OR description ILIKE $1 ORDER BY created_at DESC", [`%${searchTerm}%`]);
+    const posts = postsResult.rows;
+
+    // Fetch users visible in user list
+    const usersResult = await db.query('SELECT * FROM users WHERE visible = true');
+    const users = usersResult.rows;
+
+    res.render('index', { posts, users, user: req.session.user });
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");
   }
 });
+
 
 
 app.listen(PORT, () => {
