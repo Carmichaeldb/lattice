@@ -1,0 +1,40 @@
+/* main.css */
+body {
+  font-family: 'Times New Roman', Times, serif;
+}
+main {
+  display: flex;
+  justify-content: space-between;
+}
+
+.content-area {
+  /* Your existing styles, ensure it doesn't take 100% width */
+  width: 70%;
+}
+
+.user-list {
+  width: 30%;
+  /* Additional styling as needed */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  main {
+      flex-direction: column;
+  }
+  .content-area, .user-list {
+      width: 100%;
+  }
+}
+.user-list-ul {
+  display: right;
+  flex-direction: column;
+  list-style-type: none; /* Removes bullet points */
+  padding-left: 0; /* Removes default padding */
+  margin: 0; /* Removes default margin */
+}
+
+.user-list-ul li {
+  /* Add styles for your list items here */
+  margin-bottom: 10px; /* Example: space between items */
+}
