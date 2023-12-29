@@ -45,7 +45,7 @@ main {
   background-color: #b2b28e; /* You can adjust the color to match your nav bar */
   padding: 10px;
   border: 1px solid #e7e7e7;
-  border-radius: 8px;
+  border-radius: 18px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   margin-top: 10px;
 }
@@ -68,7 +68,7 @@ main {
 }
 
 .login-prompt button {
-  background-color: #4CAF50;
+  background-color: #778260;
   color: white;
   padding: 10px 15px;
   border: none;
