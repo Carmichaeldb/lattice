@@ -10,7 +10,7 @@
 </head>
 <body>
   <%- include('partials/nav') %> <!-- Include the navigation partial -->
-
+  <%- include('partials/userList', { users: users }) %>
   <main>
     <div class="grid-container">
       <% posts.forEach(post => { %>
