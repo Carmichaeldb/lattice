@@ -82,6 +82,51 @@ app.get('/search', async (req, res) => {
 });
 
 
+app.post('/user-search', async (req, res) => {
+  const { username } = req.body; // Assuming your form sends a username field
+  try {
+    // Check if a user with this username exists
+    const userResult = await db.query('SELECT * FROM users WHERE username = $1', [username]);
+    if (userResult.rows.length > 0) {
+      // User exists, render password prompt
+      res.render('passwordPrompt', { username: userResult.rows[0].username });
+    } else {
+      // User does not exist, handle accordingly
+      res.send('Username not found');
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+});
+
+
+
+app.post('/authenticate-user', async (req, res) => {
+  const { userId, password } = req.body;
+  try {
+    const userResult = await db.query('SELECT * FROM users WHERE id = $1', [userId]);
+    if (userResult.rows.length > 0) {
+      const user = userResult.rows[0];
+      if (user.password === password) { // Use hashed passwords in a real app
+        // Password matches, handle login success
+      } else {
+        // Password does not match, handle error
+      }
+    } else {
+      // User not found, handle error
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+});
+
+
+
+
+
+
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
