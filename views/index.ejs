@@ -10,8 +10,8 @@
 </head>
 <body>
   <%- include('partials/nav') %> <!-- Include the navigation partial -->
-  <%- include('partials/userList', { users: users }) %>
-  <main>
+
+  <main class="main-container">
     <div class="grid-container">
       <% posts.forEach(post => { %>
         <div class="grid-item">
@@ -21,6 +21,9 @@
         </div>
       <% }) %>
     </div>
+
+    <!-- Include the userList partial inside the main-container -->
+    <%- include('partials/userList', { users: users }) %>
   </main>
   
   <script src="/vendor/jquery-3.0.0.js"></script>
