@@ -31,13 +31,13 @@ app.use((req, res, next) => {
 });
 
 // SCSS middleware (currently disabled)
-app.use(sassMiddleware({
-  source: __dirname + '/styles',
-  destination: __dirname + '/public/styles',
-  isSass: false,
-  outputStyle: 'compressed',
-  prefix: '/styles',
-}));
+//app.use(sassMiddleware({
+//  source: __dirname + '/styles',
+//  destination: __dirname + '/public/styles',
+//  isSass: false,
+//  outputStyle: 'compressed',
+//  prefix: '/styles',
+//}));
 
 app.use(express.static('public'));
 app.use('/styles', express.static('styles'));
@@ -46,17 +46,24 @@ app.use('/styles', express.static('styles'));
 app.use('/users', usersRoutes);
 app.use('/topics', topicsRoutes);
 
+// Home page && UserList route
+
 // Home page route
 app.get('/', async (req, res) => {
   try {
-    const result = await db.query('SELECT * FROM posts ORDER BY created_at DESC');
-    const posts = result.rows;
-    res.render('index', { posts, user: req.session.user });
+    const postsResult = await db.query('SELECT * FROM posts ORDER BY created_at DESC');
+    const posts = postsResult.rows;
+
+    const usersResult = await db.query('SELECT * FROM users WHERE visible = true');
+    const users = usersResult.rows;
+
+    res.render('index', { posts, users, user: req.session.user });
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");
   }
 });
+
 
 // Search route
 app.get('/search', async (req, res) => {
@@ -70,6 +77,7 @@ app.get('/search', async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
+
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
