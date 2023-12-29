@@ -2,39 +2,49 @@
 body {
   font-family: 'Times New Roman', Times, serif;
 }
+
 main {
   display: flex;
   justify-content: space-between;
 }
 
-.content-area {
-  /* Your existing styles, ensure it doesn't take 100% width */
-  width: 70%;
+.grid-container {
+  flex-grow: 1; /* Already set to take available space */
+  width: calc(80% - 20px); /* Example: Adjust the width */
+  /* Other styles */
+}
+
+
+.users-heading {
+  text-align: right; /* Align the heading to the right */
+  margin-right: 10px; /* Adjust as necessary for spacing */
+  /* Additional styles as needed */
 }
 
 .user-list {
-  width: 30%;
+  width: 15%; /* Fixed width for the user list */
+  padding: 10px;
   /* Additional styling as needed */
+}
+
+.user-list-ul {
+  list-style-type: none; /* Removes bullet points */
+  padding-left: 0; /* Removes default padding */
+  margin-left: 0; /* Removes default margin */
+  text-align: right; /* Align text to the right if needed */
+}
+
+.user-list-ul li {
+  margin-bottom: 10px; /* Space between items */
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
   main {
-      flex-direction: column;
+    flex-direction: column;
   }
-  .content-area, .user-list {
-      width: 100%;
+  .grid-container, .user-list {
+    width: 100%;
+    margin-right: 15px;
   }
-}
-.user-list-ul {
-  display: right;
-  flex-direction: column;
-  list-style-type: none; /* Removes bullet points */
-  padding-left: 0; /* Removes default padding */
-  margin: 0; /* Removes default margin */
-}
-
-.user-list-ul li {
-  /* Add styles for your list items here */
-  margin-bottom: 10px; /* Example: space between items */
 }
