@@ -5,15 +5,17 @@ const router = express.Router();
 const { getSearch } = require('../db/queries/search');
 
 // Home page
-router.post('/', (req, res) => {
+router.post('/search', (req, res) => {
   console.log("inside router");
+  const searchText = req.body.search; //name of the input field
   getSearch(searchText)
-    .then(posts => {
-      const templateVars = { posts };
-      res.render('index', templateVars);
+    .then((searchResult) => {
+      console.log("searchResult::", searchResult)
+      const templateVars = { searchResult };
+      res.render('search', templateVars);
     })
-    .catch(err => {
-      console.log(err);
+    .catch((err) => {
+      console.log("Error:", err.message);
     });
 });
 
