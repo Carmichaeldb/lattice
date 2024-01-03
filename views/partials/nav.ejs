@@ -25,19 +25,30 @@
 
       <!-- nav-user-form placed here for smaller screens -->
       <div class="nav-user-form-container">
-        <form method="POST" action="/user-search" class="nav-user-form">
-          <input type="text" name="username" placeholder="Username" class="nav-user-input"/>
-        </form>
-        
+        <% if (!user || user.name === 'Public') { %>
+          <form method="POST" action="/user-search" class="nav-user-form">
+            <input type="text" name="username" placeholder="Username" class="nav-user-input"/>
+          </form>
+        <% } %>
       </div>
     </div>
 
     <!-- Group for user info on the right -->
     <div class="nav-user-right">
-      <div class="nav-user">
-        <span class="nav-username"><%= user.name %></span>
-        <img src="/images/<%= user.image %>" alt="User Profile" class="nav-user-img">
-      </div>
+      <% if (user && user.name !== 'Public') { %>
+        <!-- Display for logged-in user -->
+        <div class="nav-user">
+          <span class="nav-username"><%= user.name %></span>
+          <img src="/images/<%= user.profileImage %>" alt="User Profile" class="nav-user-img">
+        </div>
+      <% } else { %>
+        <!-- Display for public/default user -->
+        <div class="nav-user">
+          <span class="nav-username">Guest</span>
+          <img src="/images/PublicUserPicture.png" alt="Default User Profile" class="nav-user-img">
+        </div>
+      <% } %>
     </div>
   </div>
 </nav>
+
