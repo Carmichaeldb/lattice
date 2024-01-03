@@ -1,6 +1,7 @@
 require('dotenv').config();
 const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
+const bcrypt = require('bcrypt');
 const morgan = require('morgan');
 const session = require('express-session');
 const usersRoutes = require('./routes/users');
@@ -103,18 +104,31 @@ app.post('/user-search', async (req, res) => {
 
 
 app.post('/authenticate-user', async (req, res) => {
-  const { userId, password } = req.body;
+  const { username, password } = req.body;
   try {
-    const userResult = await db.query('SELECT * FROM users WHERE id = $1', [userId]);
+    const userResult = await db.query('SELECT * FROM users WHERE username = $1', [username]);
     if (userResult.rows.length > 0) {
       const user = userResult.rows[0];
-      if (user.password === password) { // Use hashed passwords in a real app
+      // Compare hashed password
+      const match = await bcrypt.compare(password, user.password);
+      if (match) {
         // Password matches, handle login success
+        // Update session with user details
+        req.session.user = {
+          id: user.id,
+          username: user.username,
+          profileImage: user.profile_image,
+          name: user.first_name + ' ' + user.last_name
+        };
+        // Redirect to a desired page after successful login
+        res.redirect('/some-success-page');
       } else {
         // Password does not match, handle error
+        res.send('Invalid password');
       }
     } else {
       // User not found, handle error
+      res.send('Username not found');
     }
   } catch (err) {
     console.error(err);
