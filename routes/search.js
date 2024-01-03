@@ -5,7 +5,7 @@ const router = express.Router();
 const { getSearch } = require('../db/queries/search');
 
 // Home page
-router.post('/search', (req, res) => {
+router.post('/', (req, res) => {
   console.log("inside router");
   const searchText = req.body.search; //name of the input field
   getSearch(searchText)
