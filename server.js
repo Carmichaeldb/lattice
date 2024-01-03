@@ -37,7 +37,8 @@ const postsRoutes = require('./routes/posts');
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 app.use('/', postsRoutes);
 app.use('/users', usersRoutes);
-app.use('/s', searchRoutes);
+app.use('/search', searchRoutes);
+
 // Note: mount other resources here, using the same pattern above
 
 app.listen(PORT, () => {
