@@ -7,6 +7,7 @@ const session = require('express-session');
 const usersRoutes = require('./routes/users');
 const topicsRoutes = require('./routes/topics');
 const db = require('./db/connection');
+const { hashPassword } = require('./auth');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -136,6 +137,22 @@ app.post('/authenticate-user', async (req, res) => {
   }
 });
 
+// User registration route
+app.post('/register', async (req, res) => {
+  const { username, password } = req.body;
+  try {
+    const hashedPassword = await hashPassword(password);
+    // Now store the username and hashedPassword in your database
+    // Example:
+    // await db.query('INSERT INTO users (username, password) VALUES ($1, $2)', [username, hashedPassword]);
+
+    // Redirect to a login page, or wherever appropriate
+    res.redirect('/login');
+  } catch (error) {
+    console.error('Registration error:', error);
+    res.status(500).send('An error occurred during registration');
+  }
+});
 
 
 
