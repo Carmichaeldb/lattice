@@ -6,7 +6,11 @@
   <form method="POST" action="/posts/topics">
     <button type="submit">Topics</button>
   </form>
-  <input id="searchId" type="text" name="search" placeholder="Search" style="width: 300px;" />
+  <form method="POST" action="/search/">
+    <input type="text" name="search" placeholder="Search" style="width: 300px;" />
+    <button type="submit">Search</button>
+  </form>
+
   <form method="POST" action="/user/new">
     <button type="submit">Create</button>
   </form>
