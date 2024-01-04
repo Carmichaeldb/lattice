@@ -201,6 +201,22 @@ app.get('/profile', async (req, res) => {
   }
 });
 
+// Logout route
+app.get('/logout', (req, res) => {
+  if (req.session) {
+    req.session.destroy((err) => {
+      if (err) {
+        // Handle error - e.g., render error page
+        res.status(500).send('Error occurred');
+      } else {
+        res.redirect('/'); // Redirect to home or login page
+      }
+    });
+  } else {
+    // If no session, just redirect
+    res.redirect('/');
+  }
+});
 
 
 
