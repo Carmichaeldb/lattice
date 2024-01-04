@@ -101,7 +101,19 @@ app.get('/profile/:username', async (req, res) => {
 });
 
 
+app.post('/create-post', async (req, res) => {
+  const { title, url, description } = req.body;
+  // You might want to include validation for the input data here
 
+  try {
+    // Assuming you have a function to add a post to the database
+    await db.query('INSERT INTO posts (title, url, description) VALUES ($1, $2, $3)', [title, url, description]);
+    res.redirect('/'); // Redirect to home page or to the created post
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+});
 
 
 app.post('/user-search', async (req, res) => {
