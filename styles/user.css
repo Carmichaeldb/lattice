@@ -1,0 +1,25 @@
+/* user.css */
+
+.profile-header {
+  /* Styles for the profile header */
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.profile-content {
+  /* Styles for the main profile content */
+  padding: 20px;
+}
+
+
+
+
+.grid-item-post {
+  background-color: #fff;
+  border: 1px solid #ddd; /* Border for each post */
+  margin-bottom: 10px; /* Spacing between posts */
+  padding: 10px;
+  border-radius: 30px; /* Slightly rounded corners for posts */
+  
+  
+  }
