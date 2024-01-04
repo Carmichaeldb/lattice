@@ -1,10 +1,9 @@
 const db = require('../connection');
 
-const getUsers = () => {
-  return db.query('SELECT * FROM users;')
-    .then(data => {
-      return data.rows;
-    });
+const checkUser = (userId) => {
+  return db.query(`SELECT * FROM users
+  WHERE id = $1;`, [userId])
+    .then(data => data.rows.length > 0);
 };
 
 //to get user Id using username from table users

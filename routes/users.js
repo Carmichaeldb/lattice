@@ -6,13 +6,32 @@
  */
 
 const express = require('express');
+<<<<<<< 368547652c459f7136045ee98ecc5befb6d1b642
 const router = express.Router();
 
 const { insertNewPostByUser } = require('../db/queries/users');
+=======
+const router  = express.Router();
+const { checkUser } = require("../db/queries/users.js");
+>>>>>>> Add: checkUser query to queries/users.js, Add: login route, session-cookie creation to userId 1, Add: checking db for userId from cookie and render users view if true, Edit: users.ejs to welcome user.
 
 //localhost:8080/users/ is the endpoint bz we tell app to use /users as start for this file i.e app.use('/users', usersRoutes);
-router.get('/', (req, res) => {
-  res.render('users');
+router.get('/users', (req, res) => {
+  const userId = req.session["userId"];
+
+  checkUser(userId)
+    .then((userFound) => {
+      if (userFound) {
+        res.render("users");
+      } else {
+        res.redirect("/login");
+      }
+    });
+});
+
+router.get('/login', (req, res) => {
+  req.session.userId = 1;
+  res.redirect("/");
 });
 
 //for create button to render create new post form

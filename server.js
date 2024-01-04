@@ -5,6 +5,7 @@ require('dotenv').config();
 const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
+const cookieSession = require('cookie-session');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -26,6 +27,12 @@ app.use(
 );
 app.use(express.static('public'));
 
+// use cookie-session to create cookies
+app.use(cookieSession({
+  name: 'session',
+  keys: ['test-secret-key'],
+}));
+
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require('./routes/users');
@@ -36,9 +43,13 @@ const postsRoutes = require('./routes/posts');
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 app.use('/', postsRoutes);
+<<<<<<< 368547652c459f7136045ee98ecc5befb6d1b642
 app.use('/users', usersRoutes);
 app.use('/search', searchRoutes);
 
+=======
+app.use('/', usersRoutes);
+>>>>>>> Add: checkUser query to queries/users.js, Add: login route, session-cookie creation to userId 1, Add: checking db for userId from cookie and render users view if true, Edit: users.ejs to welcome user.
 // Note: mount other resources here, using the same pattern above
 
 // Home page
