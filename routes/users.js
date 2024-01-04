@@ -15,22 +15,28 @@ const router  = express.Router();
 const { checkUser } = require("../db/queries/users.js");
 >>>>>>> Add: checkUser query to queries/users.js, Add: login route, session-cookie creation to userId 1, Add: checking db for userId from cookie and render users view if true, Edit: users.ejs to welcome user.
 
-//localhost:8080/users/ is the endpoint bz we tell app to use /users as start for this file i.e app.use('/users', usersRoutes);
+// render users page
 router.get('/users', (req, res) => {
   const userId = req.session["userId"];
 
+  // Checks if user exists
   checkUser(userId)
     .then((userFound) => {
       if (userFound) {
+        // if user exists (true) render users view
         res.render("users");
       } else {
+        // if user does not exist (false) redirect to login
         res.redirect("/login");
       }
     });
 });
 
+// logins in user
 router.get('/login', (req, res) => {
+  // sets session-cookie to userId 1
   req.session.userId = 1;
+  // redirects to index page
   res.redirect("/");
 });
 

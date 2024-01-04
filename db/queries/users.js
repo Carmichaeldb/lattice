@@ -1,5 +1,6 @@
 const db = require('../connection');
 
+// check if user exists in database
 const checkUser = (userId) => {
   return db.query(`SELECT * FROM users
   WHERE id = $1;`, [userId])
