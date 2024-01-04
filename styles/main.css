@@ -23,6 +23,8 @@ main {
 }
 
 .user-list {
+  color: #b1cc11;
+  background-color: #778260;
   width: 15%; /* Fixed width for the user list */
   padding: 10px;
   /* Additional styling as needed */
