@@ -119,10 +119,11 @@ app.post('/authenticate-user', async (req, res) => {
           id: user.id,
           username: user.username,
           profileImage: user.profile_image,
-          name: user.first_name + ' ' + user.last_name
+          name: user.first_name + ' ' + user.last_name,
+          loggedOut: false,
         };
-        // Redirect to a desired page after successful login
-        res.redirect('/some-success-page');
+        // Redirect to the profile page after successful login
+        res.redirect('/profile');
       } else {
         // Password does not match, handle error
         res.send('Invalid password');
@@ -136,6 +137,15 @@ app.post('/authenticate-user', async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
+
+app.post('/logout', (req, res) => {
+  req.session.user = { name: 'Public', image: 'PublicUserPicture.png', loggedOut: true };
+  res.redirect('/');
+});
+
+
+
+
 
 // User registration route
 app.post('/register', async (req, res) => {
@@ -154,6 +164,22 @@ app.post('/register', async (req, res) => {
   }
 });
 
+app.get('/profile', async (req, res) => {
+  if (req.session.user) {
+    // Fetch user-specific data (e.g., posts)
+    try {
+      const postsResult = await db.query('SELECT * FROM posts WHERE user_id = $1', [req.session.user.id]);
+      const posts = postsResult.rows; // or however you extract query results based on your DB client
+
+      res.render('profilePage', { user: req.session.user, posts: posts });
+    } catch (err) {
+      console.error('Error fetching posts:', err);
+      res.status(500).send('Internal Server Error');
+    }
+  } else {
+    res.redirect('/login');
+  }
+});
 
 
 
