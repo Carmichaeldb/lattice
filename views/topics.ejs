@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <title>Lattice - Explore Topics</title>
     <link rel="stylesheet" href="/styles/topics.css">
-
-
 </head>
 <body>
     <%- include('partials/nav') %>
@@ -18,7 +16,8 @@
                         <h2><%= topicWithPosts.topic_name %></h2>
                         <% topicWithPosts.posts.forEach(post => { %>
                             <div class="grid-item-post">
-                                <h3><%= post.title %></h3>
+                                <!-- Wrap the post title in a link -->
+                                <h3><a href="<%= post.url %>" target="_blank"><%= post.title %></a></h3>
                                 <p><%= post.description %></p>
                                 <!-- Other details about the post -->
                             </div>
@@ -28,8 +27,5 @@
             <% }) %>
         </div>
     </main>
-    
-    
 </body>
 </html>
-
