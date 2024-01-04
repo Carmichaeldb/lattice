@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="/styles/main.css" />
+    <link rel="stylesheet" href="/styles/user.css" />
+    <link rel="stylesheet" href="/styles/topics.css" />
+
+</head>
+<body>
+  <%- include('partials/nav') %>
+
+    <div class="profile-content">
+        <!-- Your user profile and posts content here -->
+        <h1>Welcome, <%= user.name %>!</h1>
+        <p>Here are your posts:</p>
+        <% if (posts && posts.length > 0) { %>
+            <ul>
+                <% posts.forEach(post => { %>
+                    <li><%= post.title %> - <%= post.content %></li>
+                <% }); %>
+            </ul>
+        <% } else { %>
+            <p>You have no posts yet.</p>
+        <% } %>
+    </div>
+</body>
+</html>
