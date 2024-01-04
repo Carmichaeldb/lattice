@@ -15,7 +15,8 @@
     <div class="grid-container">
       <% posts.forEach(post => { %>
         <div class="grid-item">
-          <h3><%= post.title %></h3>
+          <!-- Wrap the post title in a link -->
+          <h3><a href="<%= post.url %>" target="_blank"><%= post.title %></a></h3>
           <p><%= post.description %></p>
           <!-- Other details about the post -->
         </div>
@@ -24,7 +25,8 @@
 
     <!-- Include the userList partial inside the main-container -->
     <%- include('partials/userList', { users: users }) %>
-  </main>
+</main>
+
   
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/app.js"></script>
