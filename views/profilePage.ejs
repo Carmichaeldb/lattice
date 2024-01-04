@@ -20,8 +20,8 @@
         <% if (posts && posts.length > 0) { %>
           <% posts.forEach(post => { %>
             <div class="grid-item">
-              <h3><%= post.title %></h3>
-              <p><%= post.description %></p>
+              <h3 class="post-title"><%= post.title %></h3>
+              <p class="post-description"><%= post.description %></p>
               <!-- Other details about the post -->
             </div>
           <% }); %>
@@ -29,6 +29,7 @@
           <p>You have no posts yet.</p>
         <% } %>
       </div>
+      
     </main>
   </body>
   </html>
