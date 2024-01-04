@@ -13,7 +13,11 @@
       <div class="nav-links-left">
         <a href="/" class="nav-button">Home</a>
         <a href="/topics" class="nav-button">Topics</a>
-        <a href="/user/new" class="nav-button">Create</a>
+        <% if (user && user.name !== 'Public') { %>
+          <a href="/user/new" class="nav-button">Create</a>
+        <% } else { %>
+          <a href="javascript:void(0);" class="nav-button nav-button-prompt" onclick="promptLogin()">Create</a>
+        <% } %>
       </div>
     </div>
 
@@ -27,20 +31,18 @@
       <div class="nav-user-form-container">
         <% if (!user || user.name === 'Public') { %>
           <form method="POST" action="/user-search" class="nav-user-form">
-            <input type="text" name="username" placeholder="Username" class="nav-user-input"/>
+            <input type="text" name="username" placeholder="Log in with Username" class="nav-user-input"/>
           </form>
         <% } %>
       </div>
     </div>
 
     <!-- Group for user info on the right -->
-    <!-- Group for user info on the right -->
     <div class="nav-user-right" style="cursor: pointer;">
       <% if (user && user.name !== 'Public') { %>
         <div class="nav-user" onclick="location.href='/profile/<%= user.username %>'">
           <span class="nav-username"><%= user.name %></span>
           <img src="/images/<%= user.profileImage %>" alt="User Profile" class="nav-user-img">
-          <!-- Logout Link -->
           <a href="/logout" class="nav-button">Logout</a>
         </div>
       <% } else { %>
@@ -50,7 +52,16 @@
         </div>
       <% } %>
     </div>
-    
   </div>
 </nav>
 
+<script>
+  function promptLogin() {
+    // Change the placeholder color and possibly the background color
+    const userInput = document.querySelector('.nav-user-input');
+    userInput.placeholder = 'PLEASE LOG IN';
+    userInput.style.color = 'red'; // Change text color
+    userInput.style.backgroundColor = '#f2cb0a'; // Change background color
+    // Add any other logic you need, like showing a modal or alert
+  }
+</script>
