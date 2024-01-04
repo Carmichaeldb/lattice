@@ -2,8 +2,8 @@
 
 
 .navigation {
-  background: #f8f9fa;
-  border-bottom: 1px solid #e7e7e7;
+  background: #FCFBE3;
+  border-bottom: 4px solid #b1cc11;
   padding: 0.5rem 1rem;
 }
 
@@ -42,6 +42,13 @@
   align-items: center;
 }
 
+.nav-button-prompt {
+  color: #ff0000; /* Change the color to a noticeable one */
+}
+
+.nav-button-prompt:hover {
+  color: #57030a; /* Optionally change color on hover */
+}
 
 
 .nav-links {
