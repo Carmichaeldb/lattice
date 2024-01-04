@@ -65,6 +65,13 @@ app.get('/', async (req, res) => {
 });
 
 
+// Route to display the new user or new post creation form
+app.get('/user/new', (req, res) => {
+  // Render a page for creating a new post
+  res.render('newPost', { user: req.session.user }); // Pass the user object to the template
+});
+
+
 // Search route
 app.get('/search', async (req, res) => {
   const searchTerm = req.query.search;
