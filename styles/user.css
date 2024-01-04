@@ -1,25 +1,32 @@
-/* user.css */
-
-.profile-header {
-  /* Styles for the profile header */
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.profile-content {
-  /* Styles for the main profile content */
-  padding: 20px;
+.Welcome {
+  background-color: #96A508;
+  margin: 0;
+  color: #FFFFE5;  /* Correct property for font color */
+  font-weight: 100;
 }
 
 
 
+.post-title {
+  font-size: 1.5em; /* Adjust the font size as needed */
+  margin-bottom: 10px; /* Space between title and description */
+  /* Add any other styles you need */
+}
 
-.grid-item-post {
-  background-color: #fff;
-  border: 1px solid #ddd; /* Border for each post */
-  margin-bottom: 10px; /* Spacing between posts */
-  padding: 10px;
-  border-radius: 30px; /* Slightly rounded corners for posts */
-  
-  
+.post-description {
+  font-size: 1em;
+  margin-bottom: 15px; /* Space after the description */
+  line-height: 1.4; /* Adjust line height for better readability */
+  /* Additional styling */
+}
+
+/* Flexibility for different screen sizes */
+@media (max-width: 768px) {
+  .post-title {
+    font-size: 1.3em; /* Slightly smaller font size on smaller screens */
   }
+
+  .post-description {
+    font-size: 0.9em; /* Slightly smaller font size on smaller screens */
+  }
+}
