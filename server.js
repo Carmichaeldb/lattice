@@ -83,6 +83,26 @@ app.get('/search', async (req, res) => {
   }
 });
 
+app.get('/profile/:username', async (req, res) => {
+  if (req.session.user) {
+    try {
+      // Fetch the posts for the logged-in user
+      const postsResult = await db.query('SELECT * FROM posts WHERE user_id = $1', [req.session.user.id]);
+      const posts = postsResult.rows;
+
+      res.render('profilePage', { user: req.session.user, posts: posts });
+    } catch (err) {
+      console.error(err);
+      res.status(500).send("Server Error");
+    }
+  } else {
+    res.status(401).send('Unauthorized');
+  }
+});
+
+
+
+
 
 app.post('/user-search', async (req, res) => {
   const { username } = req.body; // Assuming your form sends a username field
