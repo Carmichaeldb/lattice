@@ -34,11 +34,14 @@
     </div>
 
     <!-- Group for user info on the right -->
-    <div class="nav-user-right" onclick="location.href='<%= user && user.name !== 'Public' ? '/profile/' + user.username : '/' %>'" style="cursor: pointer;">
+    <!-- Group for user info on the right -->
+    <div class="nav-user-right" style="cursor: pointer;">
       <% if (user && user.name !== 'Public') { %>
-        <div class="nav-user">
+        <div class="nav-user" onclick="location.href='/profile/<%= user.username %>'">
           <span class="nav-username"><%= user.name %></span>
           <img src="/images/<%= user.profileImage %>" alt="User Profile" class="nav-user-img">
+          <!-- Logout Link -->
+          <a href="/logout" class="nav-button">Logout</a>
         </div>
       <% } else { %>
         <div class="nav-user">
