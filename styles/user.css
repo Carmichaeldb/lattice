@@ -1,28 +1,25 @@
-.main-container {
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-}
-.new-post-form-container {
-  max-width: 800px; /* or any width that suits your layout */
-  /* Add any additional styles specific to the new post form */
+.Welcome {
+  font-weight: normal;
+  margin: 5px;
 }
 
+.post-container {
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+}
 
 .form-container {
   background-color: #F2F2E7;
   padding: 20px;
   border-radius: 4px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  max-width: 700px;
-  min-width: 300px;  /* Minimum width */
-  max-width: 80%;    /* Maximum width */
-  margin: auto;      /* Center the form */ 
-
+  min-width: 500px; /* Minimum width */
+  max-width: 800px; /* Increased maximum width */
+  margin: auto; /* Center the form */ 
 }
 
 .form-group {
-  
   margin-bottom: 15px;
 }
 
@@ -39,6 +36,10 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+}
+
+.form-group textarea {
+  height: 150px; /* Default height unique to textarea */
 }
 
 .form-group input[type="text"]:focus,
@@ -61,4 +62,3 @@ button[type="submit"]:hover {
   color: #446360;
   background-color: #dfe5ea;
 }
-
