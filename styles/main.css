@@ -44,6 +44,36 @@ main {
 /* Styles for the login prompt */
 
 
+/* styling for postList */
+
+.posts-heading {
+  text-align: right;
+  margin-right: 10px;
+  /* Additional styles as needed */
+}
+
+.post-list {
+  color: #b1cc11; /* Adjust color if needed */
+  background-color: #778260;
+  width: 15%; /* Adjust width if needed */
+  padding: 10px;
+  /* Additional styling as needed */
+}
+
+.post-list-ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-left: 0;
+  text-align: right;
+}
+
+.post-list-ul li {
+  margin-bottom: 10px;
+}
+
+
+
+
 .login-prompt {
   background-color: #778260; /* You can adjust the color to match your nav bar */
   padding: 10px;
