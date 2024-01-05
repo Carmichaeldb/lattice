@@ -15,10 +15,14 @@
   border-radius: 4px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   max-width: 700px;
+  min-width: 300px;  /* Minimum width */
+  max-width: 80%;    /* Maximum width */
+  margin: auto;      /* Center the form */ 
 
 }
 
 .form-group {
+  
   margin-bottom: 15px;
 }
 
@@ -57,3 +61,4 @@ button[type="submit"]:hover {
   color: #446360;
   background-color: #dfe5ea;
 }
+
