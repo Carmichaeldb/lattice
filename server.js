@@ -1,5 +1,5 @@
 require('dotenv').config();
-const sassMiddleware = require('./lib/sass-middleware');
+
 const express = require('express');
 const bcrypt = require('bcrypt');
 const morgan = require('morgan');
@@ -32,14 +32,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// SCSS middleware (currently disabled)
-//app.use(sassMiddleware({
-//  source: __dirname + '/styles',
-//  destination: __dirname + '/public/styles',
-//  isSass: false,
-//  outputStyle: 'compressed',
-//  prefix: '/styles',
-//}));
+
 
 app.use(express.static('public'));
 app.use('/styles', express.static('styles'));
