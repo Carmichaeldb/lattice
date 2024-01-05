@@ -27,7 +27,7 @@ background-color: #fff;
 border: 1px solid #ddd; /* Border for each post */
 margin-bottom: 10px; /* Spacing between posts */
 padding: 10px;
-border-radius: 30px; /* Slightly rounded corners for posts */
+border-radius: 10px; /* Slightly rounded corners for posts */
 /* Add more styling for posts if needed */
 
 }
