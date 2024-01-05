@@ -65,11 +65,19 @@ app.get('/', async (req, res) => {
 });
 
 
-// Route to display the new user or new post creation form
-app.get('/user/new', (req, res) => {
-  // Render a page for creating a new post
-  res.render('newPost', { user: req.session.user }); // Pass the user object to the template
+app.get('/user/new', async (req, res) => {
+  try {
+    const userPostsResult = await db.query('SELECT * FROM posts WHERE user_id = $1', [req.session.user.id]);
+    const userPosts = userPostsResult.rows;
+
+    res.render('newPost', { user: req.session.user, userPosts: userPosts });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
 });
+
+
 
 
 // Search route
