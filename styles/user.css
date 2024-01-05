@@ -48,6 +48,12 @@
   border-color: #DFEDBC;
 }
 
+#expandingTextarea {
+  max-width: 500px; /* or any other value that suits your design */
+  width: 100%; /* Responsive width */
+  /* Other styling as needed */
+}
+
 button[type="submit"] {
   background-color: #446360;
   color: white;
