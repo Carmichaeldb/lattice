@@ -26,12 +26,29 @@
             <label for="description">Description:</label>
             <textarea id="description" name="description" required></textarea>
           </div>
-          <!-- Additional form fields as needed -->
           <button type="submit">Create Post</button>
         </form>
       </div>
       <%- include('partials/postTitles', { posts: userPosts }) %>
-
     </main>
+
+    <script>
+        const textarea = document.getElementById('description');
+
+        textarea.addEventListener('input', function() {
+            // Reset field height
+            textarea.style.height = 'inherit';
+
+            // Calculate the height
+            const computed = window.getComputedStyle(textarea);
+            const height = parseInt(computed.getPropertyValue('border-top-width'), 10)
+                         + parseInt(computed.getPropertyValue('padding-top'), 10)
+                         + textarea.scrollHeight
+                         + parseInt(computed.getPropertyValue('padding-bottom'), 10)
+                         + parseInt(computed.getPropertyValue('border-bottom-width'), 10);
+
+            textarea.style.height = `${height}px`;
+        });
+    </script>
 </body>
 </html>
