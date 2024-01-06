@@ -14,7 +14,8 @@
         <a href="/" class="nav-button">Home</a>
         <a href="/topics" class="nav-button">Topics</a>
         <% if (user && user.name !== 'Public') { %>
-          <a href="/user/new" class="nav-button">Create</a>
+          <a href="/users/user/new" class="nav-button">Create</a>
+
         <% } else { %>
           <a href="javascript:void(0);" class="nav-button nav-button-prompt" onclick="promptLogin()">Create</a>
         <% } %>
@@ -30,7 +31,7 @@
       <!-- nav-user-form placed here for smaller screens -->
       <div class="nav-user-form-container">
         <% if (!user || user.name === 'Public') { %>
-          <form method="POST" action="/user-search" class="nav-user-form">
+          <form method="POST" action="/users/user-search" class="nav-user-form">
             <input type="text" name="username" placeholder="Log in with Username" class="nav-user-input"/>
           </form>
         <% } %>
@@ -40,11 +41,15 @@
     <!-- Group for user info on the right -->
     <div class="nav-user-right" style="cursor: pointer;">
       <% if (user && user.name !== 'Public') { %>
-        <div class="nav-user" onclick="location.href='/profile/<%= user.username %>'">
+        <div class="nav-user" onclick="location.href='/users/profile/<%= user.username %>'">
           <span class="nav-username"><%= user.name %></span>
           <img src="/images/<%= user.profileImage %>" alt="User Profile" class="nav-user-img">
+
+
           <a href="/logout" class="nav-button">Logout</a>
+          
         </div>
+
       <% } else { %>
         <div class="nav-user">
           <span class="nav-username">Public</span>
