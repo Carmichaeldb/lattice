@@ -45,8 +45,11 @@
           <span class="nav-username"><%= user.name %></span>
           <img src="/images/<%= user.profileImage %>" alt="User Profile" class="nav-user-img">
 
+<!-- Logout Form -->
+    <form action="/users/logout" method="POST" style="display: inline;">
+        <button type="submit" class="nav-button">Logout</button>
+    </form>
 
-          <a href="/logout" class="nav-button">Logout</a>
           
         </div>
 
