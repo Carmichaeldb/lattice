@@ -10,11 +10,11 @@
     <%- include('partials/nav') %>
     
     <main>
-        <div class="grid-container">
+        <div class="topic-container">
             <% topicsWithPosts.forEach(topicWithPosts => { %>
                 <% if (topicWithPosts.posts && topicWithPosts.posts.length > 0) { %>
-                    <div class="grid-item">
-                        <h2><%= topicWithPosts.topic_name %></h2>
+                    <div class="topic-item">
+                        <%- include('partials/topicHeader', { topic_name: topicWithPosts.topic_name }) %>
                         <% topicWithPosts.posts.forEach(post => { %>
                             <div class="grid-item-post">
                                 <!-- Wrap the post title in a link -->
