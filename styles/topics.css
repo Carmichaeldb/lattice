@@ -14,13 +14,31 @@ padding: 20px;
 }
 
 .grid-item {
-background-color: #FCFBE3; /* Slightly lighter shade of grey */
-border-radius: 5px;
-padding: 20px;
-box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* New box shadow */
-margin-bottom: 20px;
-/* Add any other styles you wish to apply to grid items */
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Divide the grid item into two columns */
+  grid-template-rows: auto; /* Row height will adjust to content */
+  gap: 10px; /* Space between columns */
+  background-color: #FCFBE3; 
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
 }
+
+.post-header {
+  grid-column: 2; /* Place the header in the second column */
+  text-align: right; /* Align the text to the right */
+  /* Add any additional styling for the header here */
+}
+
+.post-header .username {
+  color: #94a8a5; /* Change to your preferred color */
+  font-weight: normal; /* Makes the font bold */
+  font-size: 1.1em; /* Adjust the font size as needed */
+  margin-top: 0; /* Adjust top margin to align it higher */
+  /* Add any other styles you wish to apply to the username */
+}
+
 
 .grid-item-post {
 background-color: #fff;
