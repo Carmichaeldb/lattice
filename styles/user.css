@@ -9,6 +9,13 @@
   padding: 5px;
 }
 
+
+#title, #description {
+  font-size: 18px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+
 .form-container {
   background-color: #F2F2E7;
   padding: 20px;
@@ -64,6 +71,8 @@
 
 #topic {
   /* Add your custom styles here */
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 18px;
   background-color: #ffffff; /* Change background color */
   color: #333; /* Change text color */
   border: 1px solid #ccc; /* Add a border */
