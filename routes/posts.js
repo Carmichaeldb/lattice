@@ -5,7 +5,13 @@ const db = require('../db/connection');
 // Home page route
 router.get('/', async (req, res) => {
   try {
-    const postsResult = await db.query('SELECT * FROM posts ORDER BY created_at DESC');
+    // Updated query to include the author's username
+    const postsResult = await db.query(`
+      SELECT posts.*, users.username 
+      FROM posts 
+      JOIN users ON posts.user_id = users.id 
+      ORDER BY posts.created_at DESC
+    `);
     const posts = postsResult.rows;
 
     const usersResult = await db.query('SELECT * FROM users WHERE visible = true');
@@ -17,6 +23,7 @@ router.get('/', async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
+
 
 
 //create
