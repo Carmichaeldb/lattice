@@ -11,12 +11,16 @@ router.get('/', (req, res) => {
   res.render('users');
 });
 
+
 router.get('/user/new', async (req, res) => {
   try {
     const userPostsResult = await db.query('SELECT * FROM posts WHERE user_id = $1', [req.session.user.id]);
     const userPosts = userPostsResult.rows;
 
-    res.render('newPost', { user: req.session.user, userPosts: userPosts });
+    const topicsResult = await db.query('SELECT * FROM topics');
+    const topics = topicsResult.rows;
+
+    res.render('newPost', { user: req.session.user, userPosts: userPosts, topics: topics });
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");

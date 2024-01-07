@@ -54,10 +54,31 @@
   /* Other styling as needed */
 }
 
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#topic {
+  /* Add your custom styles here */
+  background-color: #ffffff; /* Change background color */
+  color: #333; /* Change text color */
+  border: 1px solid #ccc; /* Add a border */
+  border-radius: 4px; /* Round the corners */
+  padding: 10px; /* Adjust padding */
+  width: 100%; /* Set width */
+  /* Add any other styles you want */
+}
+
+
 button[type="submit"] {
   background-color: #446360;
   color: white;
-  padding: 10px 20px;
+  padding: 5px 20px;
+  margin: 2px;
   border: none;
   border-radius: 4px;
   cursor: pointer;

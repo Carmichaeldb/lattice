@@ -18,12 +18,8 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Create post route
-router.post('/create-post', async (req, res) => {
-  // ... Create post logic ...
-});
 
-
+//create
 router.post('/create-post', async (req, res) => {
   const { title, url, description } = req.body;
   // You might want to include validation for the input data here
@@ -32,6 +28,20 @@ router.post('/create-post', async (req, res) => {
     // Assuming you have a function to add a post to the database
     await db.query('INSERT INTO posts (title, url, description) VALUES ($1, $2, $3)', [title, url, description]);
     res.redirect('/'); // Redirect to home page or to the created post
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+});
+
+
+// topics fetch >>
+router.get('/new', async (req, res) => {
+  try {
+    const topicsResult = await db.query('SELECT * FROM topics');
+    const topics = topicsResult.rows;
+
+    res.render('newPost', { topics: topics });
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");

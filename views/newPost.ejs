@@ -10,9 +10,11 @@
 </head>
 <body>
     <%- include('partials/nav') %>
+
     <h2 class="Welcome">Create New Post</h2>
     <main class="post-container">
       <div class="form-container">
+
         <form action="/posts/create" method="post">
           <div class="form-group">
             <label for="title">Title:</label>
@@ -26,9 +28,23 @@
             <label for="description">Description:</label>
             <textarea id="description" name="description" required></textarea>
           </div>
+        
+          <!-- Topic Dropdown  --> 
+          <div class="form-group">
+            <label for="topic">Topic:</label>
+            <select name="topic_id" id="topic" required>
+              <% topics.forEach(topic => { %>
+                <option value="<%= topic.id %>"><%= topic.topic_name %></option>
+              <% }); %>
+            </select>
+            
+          </div>
+        
           <button type="submit">Create Post</button>
         </form>
       </div>
+
+
       <%- include('partials/postTitles', { posts: userPosts }) %>
     </main>
 
