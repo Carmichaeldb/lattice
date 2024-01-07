@@ -15,33 +15,33 @@
     <main class="post-container">
       <div class="form-container">
 
-        <form action="/posts/create" method="post">
-          <div class="form-group">
-            <label for="title">Title:</label>
-            <input type="text" id="title" name="title" required>
-          </div>
-          <div class="form-group">
-            <label for="url">URL:</label>
-            <input type="text" id="url" name="url" required>
-          </div>
-          <div class="form-group">
-            <label for="description">Description:</label>
-            <textarea id="description" name="description" required></textarea>
-          </div>
-        
-          <!-- Topic Dropdown  --> 
-          <div class="form-group">
-            <label for="topic">Topic:</label>
-            <select name="topic_id" id="topic" required>
-              <% topics.forEach(topic => { %>
-                <option value="<%= topic.id %>"><%= topic.topic_name %></option>
-              <% }); %>
-            </select>
-            
-          </div>
-        
-          <button type="submit">Create Post</button>
-        </form>
+        <!-- newPost.ejs -->
+<form action="/create-post" method="post">
+  <div class="form-group">
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" required>
+  </div>
+  <div class="form-group">
+    <label for="url">URL:</label>
+    <input type="text" id="url" name="url" required>
+  </div>
+  <div class="form-group">
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" required oninput="updateCharacterCount()"></textarea>
+    <span id="descriptionCharCount">0/255</span>
+  </div>
+  <!-- Topic Dropdown --> 
+  <div class="form-group">
+    <label for="topic">Topic:</label>
+    <select name="topic_id" id="topic" required>
+      <% topics.forEach(topic => { %>
+        <option value="<%= topic.id %>"><%= topic.topic_name %></option>
+      <% }); %>
+    </select>
+  </div>
+  <button type="submit">Create Post</button>
+</form>
+
       </div>
 
 
@@ -49,22 +49,38 @@
     </main>
 
     <script>
-        const textarea = document.getElementById('description');
+      function updateCharacterCount() {
+          const descriptionInput = document.getElementById('description');
+          const charCountElement = document.getElementById('descriptionCharCount');
+          const charCount = descriptionInput.value.length;
+          charCountElement.textContent = charCount + "/255";
 
-        textarea.addEventListener('input', function() {
-            // Reset field height
-            textarea.style.height = 'inherit';
+          if (charCount > 240) {
+              charCountElement.style.color = 'red';
+          } else {
+              charCountElement.style.color = 'black';
+          }
+      }
 
-            // Calculate the height
-            const computed = window.getComputedStyle(textarea);
-            const height = parseInt(computed.getPropertyValue('border-top-width'), 10)
-                         + parseInt(computed.getPropertyValue('padding-top'), 10)
-                         + textarea.scrollHeight
-                         + parseInt(computed.getPropertyValue('padding-bottom'), 10)
-                         + parseInt(computed.getPropertyValue('border-bottom-width'), 10);
+      // Existing script for textarea resizing
+      const textarea = document.getElementById('description');
+      textarea.addEventListener('input', function() {
+          textarea.style.height = 'inherit';
+          const computed = window.getComputedStyle(textarea);
+          const height = parseInt(computed.getPropertyValue('border-top-width'), 10)
+                       + parseInt(computed.getPropertyValue('padding-top'), 10)
+                       + textarea.scrollHeight
+                       + parseInt(computed.getPropertyValue('padding-bottom'), 10)
+                       + parseInt(computed.getPropertyValue('border-bottom-width'), 10);
 
-            textarea.style.height = `${height}px`;
-        });
-    </script>
+          textarea.style.height = `${height}px`;
+          updateCharacterCount(); // Call the character count update function here as well
+      });
+
+      // Call updateCharacterCount on page load to initialize the character count
+      document.addEventListener('DOMContentLoaded', function() {
+          updateCharacterCount();
+      });
+  </script>
 </body>
 </html>
