@@ -16,14 +16,13 @@
       <% posts.forEach(post => { %>
         <div class="grid-item">
           <div class="main-content">
-            <!-- Main content like post title and description -->
-            <h3><a href="<%= post.url %>" target="_blank"><%= post.title %></a></h3>
-            <p><%= post.description %></p>
+            <div class="title-link">
+              <h3><a href="<%= post.url %>" target="_blank"><%= post.title %></a></h3>
+            </div>
+            <p class="post-description"><%= post.description %></p>
           </div>
-          <div class="post-header">
-            <!-- Include the post header partial -->
-            <%- include('partials/postHeader', { post: post }) %>
-          </div>
+          <!-- The username will be handled inside this partial -->
+          <%- include('partials/postHeader', { post: post }) %>
         </div>
       <% }) %>
     </div>
