@@ -9,11 +9,8 @@ main {
   justify-content: space-between;
 }
 
-.grid-container {
-  flex-grow: 1; /* Already set to take available space */
-  width: calc(80% - 20px); /* Example: Adjust the width */
-  /* Other styles */
-}
+
+
 .user-list, .post-list {
   color: #b1cc11;
   background-color: #778260;

@@ -13,16 +13,73 @@ grid-gap: 20px;
 padding: 20px;
 }
 
+.topic-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Updated minmax value */
+  grid-gap: 20px;
+  padding: 20px;
+  }
+  
+
+  .topic-header {
+    font-size: 1.5em;
+    color: #d69421;
+    margin: 0px;
+    width: 100%; /* Full width */
+    padding: 1px 0; /* Add padding for spacing */
+  }
+
+
+.main-content {
+  display: flex;
+  flex-direction: column; /* Stack title/link and description vertically */
+}
+
 .grid-item {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Divide the grid item into two columns */
-  grid-template-rows: auto; /* Row height will adjust to content */
+  grid-template-columns: 2fr 1fr; /* Divide the grid item into two columns */
+  
   gap: 10px; /* Space between columns */
   background-color: #FCFBE3; 
   border-radius: 5px;
   padding: 20px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   margin-bottom: 20px;
+}
+
+.topic-item {
+  display: flex;
+  flex-direction: column;
+  background-color: #d5d49c; 
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+
+
+.grid-item h2 {
+
+  color: #d69421; /* Example color for the topic header */
+  font-size: 1.5em; /* Adjust the font size as needed */
+  margin-bottom: 0.5em; /* Space between the topic header and posts */
+  padding-bottom: 0.25em; /* Padding to give space below the text */
+
+}
+
+.title-link h3 {
+  margin: 0;
+  /* Title takes up the full width since username is removed */
+}
+
+
+
+.post-description {
+  /* Add styles here */
+  font-size: 16px; /* Example font size */
+  color: #333; /* Example font color */
+  margin: 10px 0; /* Example margins */
+  /* Add any other styles you want for the description */
 }
 
 .post-header {
@@ -41,11 +98,12 @@ padding: 20px;
 
 
 .grid-item-post {
-background-color: #fff;
+background-color: #f2eedd;
 border: 1px solid #ddd; /* Border for each post */
+margin-top: 5px;
 margin-bottom: 10px; /* Spacing between posts */
 padding: 10px;
-border-radius: 10px; /* Slightly rounded corners for posts */
+border-radius: 5px; /* Slightly rounded corners for posts */
 /* Add more styling for posts if needed */
 
 }
