@@ -28,6 +28,43 @@ router.get('/user/new', async (req, res) => {
 });
 
 
+router.get('/profile/:username', async (req, res) => {
+  if (req.session.user) {
+    try {
+      // Fetch the posts for the logged-in user
+      const postsResult = await db.query('SELECT * FROM posts WHERE user_id = $1', [req.session.user.id]);
+      const posts = postsResult.rows;
+
+      res.render('profilePage', { user: req.session.user, posts: posts });
+    } catch (err) {
+      console.error(err);
+      res.status(500).send("Server Error");
+    }
+  } else {
+    res.status(401).send('Unauthorized');
+  }
+});
+
+
+
+router.get('/profile', async (req, res) => {
+  if (req.session.user) {
+    // Fetch user-specific data (e.g., posts)
+    try {
+      const postsResult = await db.query('SELECT * FROM posts WHERE user_id = $1', [req.session.user.id]);
+      const posts = postsResult.rows; // or however you extract query results based on your DB client
+
+      res.render('profilePage', { user: req.session.user, posts: posts });
+    } catch (err) {
+      console.error('Error fetching posts:', err);
+      res.status(500).send('Internal Server Error');
+    }
+  } else {
+    res.redirect('/login');
+  }
+});
+
+
 // search
 router.post('/user-search', async (req, res) => {
   const { username } = req.body; // Assuming your form sends a username field
@@ -100,40 +137,9 @@ router.post('/authenticate-user', async (req, res) => {
 });
 
 
-router.get('/profile', async (req, res) => {
-  if (req.session.user) {
-    // Fetch user-specific data (e.g., posts)
-    try {
-      const postsResult = await db.query('SELECT * FROM posts WHERE user_id = $1', [req.session.user.id]);
-      const posts = postsResult.rows; // or however you extract query results based on your DB client
-
-      res.render('profilePage', { user: req.session.user, posts: posts });
-    } catch (err) {
-      console.error('Error fetching posts:', err);
-      res.status(500).send('Internal Server Error');
-    }
-  } else {
-    res.redirect('/login');
-  }
-});
 
 
-router.get('/profile/:username', async (req, res) => {
-  if (req.session.user) {
-    try {
-      // Fetch the posts for the logged-in user
-      const postsResult = await db.query('SELECT * FROM posts WHERE user_id = $1', [req.session.user.id]);
-      const posts = postsResult.rows;
 
-      res.render('profilePage', { user: req.session.user, posts: posts });
-    } catch (err) {
-      console.error(err);
-      res.status(500).send("Server Error");
-    }
-  } else {
-    res.status(401).send('Unauthorized');
-  }
-});
 
 //router.post('/logout', (req, res) => {
 router.post('/logout', (req, res) => {

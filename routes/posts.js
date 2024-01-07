@@ -26,8 +26,9 @@ router.post('/create-post', async (req, res) => {
 
   try {
     // Assuming you have a function to add a post to the database
-    await db.query('INSERT INTO posts (title, url, description) VALUES ($1, $2, $3)', [title, url, description]);
-    res.redirect('/'); // Redirect to home page or to the created post
+    await db.query('INSERT INTO posts (title, url, description, created_at) VALUES ($1, $2, $3, NOW())', [title, url, description]);
+
+    res.redirect('/users/profile'); // Redirect to user profile
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");
