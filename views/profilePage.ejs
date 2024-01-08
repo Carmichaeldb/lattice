@@ -17,9 +17,9 @@
       <div class="grid-container">
         <% if (posts && posts.length > 0) { %>
           <% posts.forEach(post => { %>
-            <div class="grid-item">
+            <div class="profilePost-item">
               <!-- Wrap the post title in a link -->
-              <h3 class="post-title"><a href="<%= post.url %>" target="_blank"><%= post.title %></a></h3>
+              <h3 class="title-link"><a href="<%= post.url %>" target="_blank"><%= post.title %></a></h3>
               <p class="post-description"><%= post.description %></p>
               <!-- Other details about the post -->
             </div>

@@ -1,4 +1,7 @@
-
+.main-content {
+  display: flex;
+  flex-direction: column; /* Stack title/link and description vertically */
+}
 
 
 .topic {
@@ -21,19 +24,26 @@ padding: 20px;
   }
   
 
-  .topic-header {
+.topic-header {
     font-size: 1.5em;
     color: #d69421;
     margin: 0px;
     width: 100%; /* Full width */
     padding: 1px 0; /* Add padding for spacing */
-  }
-
-
-.main-content {
-  display: flex;
-  flex-direction: column; /* Stack title/link and description vertically */
 }
+
+.topic-item {
+    display: flex;
+    flex-direction: column;
+    background-color: #d5d49c; 
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+
+
 
 .grid-item {
   display: grid;
@@ -47,10 +57,10 @@ padding: 20px;
   margin-bottom: 20px;
 }
 
-.topic-item {
+.profilePost-item {
   display: flex;
-  flex-direction: column;
-  background-color: #d5d49c; 
+  flex-direction: column; /* Stack elements vertically */
+  background-color: #FCFBE3;
   border-radius: 5px;
   padding: 20px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
