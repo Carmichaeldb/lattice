@@ -1,36 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <title>Search Page</title>
+<%- include('./partials/_head') %>
+  <%- include('nav') %>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <body>
+      <main>
+        <% searchResult.forEach((element)=>{ %>
+          <p>
+            <%= element.topic %><br>
+              <%=element.title %><br>
+                <a href=<%=element.url %>> <%= element.url %></a><br>
+                <%=element.description %>
+          </p>
+          <% }) %>
 
-  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
-  <link rel="stylesheet" href="/vendor/border-box.css" />
-  <link rel="stylesheet" href="/styles/main.css" />
-  <link rel="stylesheet" href="/styles/layout.css" />
-
-  <!-- <script src="/vendor/jquery-3.0.0.js"></script> -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script defer src="/scripts/app.js"></script>
-</head>
-<%- include('nav') %>
-
-  <body>
-    <main>
-      <% searchResult.forEach((element)=>{ %>
-        <p>
-          <%= element.topic %><br>
-            <%=element.title %><br>
-              <a href=<%=element.url %>> <%= element.url %></a><br>
-              <%=element.description %>
-        </p>
-        <% }) %>
-
-    </main>
-  </body>
+      </main>
+    </body>
 
 </html>
