@@ -28,12 +28,12 @@ router.get('/', async (req, res) => {
 
 //create
 router.post('/create-post', async (req, res) => {
-  const { title, url, description } = req.body;
+  const { title, url, description, topic_id } = req.body;
   // You might want to include validation for the input data here
 
   try {
-    // Assuming you have a function to add a post to the database
-    await db.query('INSERT INTO posts (title, url, description, created_at) VALUES ($1, $2, $3, NOW())', [title, url, description]);
+    // post to the database
+    await db.query('INSERT INTO posts (title, url, description, topic_id, created_at) VALUES ($1, $2, $3, $4, NOW())', [title, url, description, topic_id]);
 
     res.redirect('/users/profile'); // Redirect to user profile
   } catch (err) {
