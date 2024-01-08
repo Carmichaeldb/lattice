@@ -1,21 +1,36 @@
-<nav>
-  <label for="lattice"> LA#ICE</label>
-  <form method="POST" action="/">
-    <button type="submit">Home</button>
-  </form>
-  <form method="POST" action="/posts/topics">
-    <button type="submit">Topics</button>
-  </form>
-  <form method="POST" action="/search/">
-    <input type="text" name="search" placeholder="Search" style="width: 300px;" />
-    <button type="submit">Search</button>
-  </form>
-
-  <form method="GET" action="/users/new">
-    <button type="submit">Create</button>
-  </form>
-  <img src="../public/images/user1.png">
-  <form method="POST" action="/users/:user_id">
-    <button type="submit">Username</button>
-  </form>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <span class="navbar-brand mb-0 h1">LA#ICE</span>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a href="/" class="nav-link active">Home</a>
+        </li>
+        <li class="nav-item">
+          <a href="/posts/topics" class="nav-link">Topics</a>
+        </li>
+        <form class="d-flex" method="POST" action="/search/">
+          <input class="form-control me-2" type="text" name="search" placeholder="Search" style="width: 300px;" />
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+        <li class="nav-item">
+          <a href="/users/new" class="nav-link">Create</a>
+        </li>
+        <li class="nav-item">
+          <a class="navbar-brand" href="#">
+            <img src="../images/user1.png" alt="userProfile" width="60" height="48">
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/users/:user_id" class="nav-link">Username</a>
+        </li>
+        <li class="nav-item">
+          <a href="/login" class="nav-link">Login</a>
+        </li>
+        <li class="nav-item">
+          <a href="/logout" class="nav-link">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </nav>
