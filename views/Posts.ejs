@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= post.title %></title>
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="stylesheet" href="/styles/post.css" />
+</head>
+<body>
+  <%- include('partials/nav') %>
+
+  <main class="post-container">
+    <article class="post">
+      <h2><%= post.title %></h2>
+      <p><%= post.description %></p>
+      <a href="<%= post.url %>" target="_blank">Read more</a>
+      <!-- You can add more details about the post here -->
+    </article>
+  </main>
+
+  <script src="/vendor/jquery-3.0.0.js"></script>
+  <script defer src="/scripts/app.js"></script>
+</body>
+</html>
