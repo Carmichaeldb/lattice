@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 //for create button to render create new post form
 router.get('/new', (req, res) => {
   console.log("inside get users/new:");
-  res.render('post');
+  res.render('newPost');
 });
 
 //for submit button to make entries of new post created in db and to redirect it to created post
