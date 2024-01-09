@@ -16,15 +16,20 @@ const { checkUser } = require("../db/queries/users.js");
 >>>>>>> Add: checkUser query to queries/users.js, Add: login route, session-cookie creation to userId 1, Add: checking db for userId from cookie and render users view if true, Edit: users.ejs to welcome user.
 
 // render users page
-router.get('/users', (req, res) => {
+router.get('/users/:userid', (req, res) => {
+  const user = req.params.userid;
   const userId = req.session["userId"];
 
   // Checks if user exists
   checkUser(userId)
     .then((userFound) => {
       if (userFound) {
+        if (user != userId) {
+          res.status(401).send("Error 401: Unauthorized Access. This profile does not belong to you.");
+          return;
+        }
         // if user exists (true) render users view
-        res.render("users");
+        res.render("userPosts");
       } else {
         // if user does not exist (false) redirect to login
         res.redirect("/login");
@@ -61,6 +66,11 @@ router.post('/new', (req, res) => {
     .catch((err) => {
       console.log("Error:", err.message);
     });
+});
+
+router.post('/logout', (req, res) => {
+  req.session = null;
+  res.redirect("/");
 });
 
 module.exports = router;
