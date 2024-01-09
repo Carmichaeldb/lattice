@@ -3,14 +3,14 @@ const router = express.Router();
 
 const { getSearch } = require('../db/queries/search');
 
-router.post('/', (req, res) => {
+router.get('/', (req, res) => {
   console.log("inside router");
-  const searchText = req.body.search; //search is name of the input field
+  const searchText = req.query.search; //search is name of the input field
   getSearch(searchText)
-    .then((searchResult) => {
-      console.log("searchResult::", searchResult)
-      const templateVars = { searchResult };
-      res.render('search', templateVars);
+    .then((posts) => {
+      console.log("posts::", posts)
+      const templateVars = { posts };
+      res.render('index', templateVars);
     })
     .catch((err) => {
       console.log("Error:", err.message);
