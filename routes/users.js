@@ -31,14 +31,11 @@ router.post('/new', (req, res) => {
   insertNewPostByUser(title, topic, url, description, author)
     .then((resultPostId) => {
       console.log("resultId::", resultPostId)
-      //const templateVars = { searchResult };
-      res.redirect("/users/" + resultPostId);
+      res.redirect("/posts/" + resultPostId);  // will display specific post
     })
     .catch((err) => {
       console.log("Error:", err.message);
     });
 });
-
-
 
 module.exports = router;
