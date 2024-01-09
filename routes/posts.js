@@ -10,6 +10,7 @@ const router  = express.Router();
 
 // Queries
 const { getAllPosts } = require('../db/queries/allPosts');
+const { getPost, getComments, getLikes, getRating } = require('../db/queries/getPost');
 
 // Home page
 router.get('/', (req, res) => {
@@ -21,6 +22,15 @@ router.get('/', (req, res) => {
     .catch(err => {
       console.log(err);
     });
+});
+
+// Render Post
+router.get('/post/:id', (req, res) => {
+  const post = req.params.id;
+  const userId = req.session["userId"];
+
+
+
 });
 
 module.exports = router;
