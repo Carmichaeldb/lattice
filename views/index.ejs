@@ -21,17 +21,34 @@
             </div>
             <p class="post-description"><%= post.description %></p>
           </div>
-          <!-- The username will be handled inside this partial -->
+          <!-- Include postHeader for each post within the loop -->
           <%- include('partials/postHeader', { post: post }) %>
+          <!-- post-footer div acting as a clickable link -->
+          <div class="post-footer" data-href="/path-to-post/<%= post.id %>">
+            <!-- Include postLink (footer) content -->
+            <%- include('partials/postLink', { post: post }) %>
+          </div>
         </div>
       <% }) %>
     </div>
 
-    <!-- Include the userList partial inside the main-container -->
+    <!-- Include the userList partial outside the loop -->
     <%- include('partials/userList', { users: users }) %>
   </main>
 
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/app.js"></script>
+  <!-- Include script for making post-footer clickable -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const footers = document.querySelectorAll('.post-footer');
+
+      footers.forEach(footer => {
+        footer.addEventListener('click', function() {
+          window.location.href = this.getAttribute('data-href');
+        });
+      });
+    });
+  </script>
 </body>
 </html>

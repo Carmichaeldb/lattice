@@ -76,4 +76,13 @@ router.get('/search', async (req, res) => {
   }
 });
 
+// Route to render an individual post
+router.get('/posts/:postId', async (req, res) => {
+  const postId = req.params.postId;
+  // Fetch post data from the database using postId
+  // ...
+  res.render('Posts', { post: postData });
+});
+
+
 module.exports = router;

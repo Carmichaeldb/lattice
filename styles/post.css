@@ -43,8 +43,6 @@ padding: 20px;
 }
 
 
-
-
 .grid-item {
   display: grid;
   grid-template-columns: 2fr 1fr; /* Divide the grid item into two columns */
@@ -92,6 +90,14 @@ padding: 20px;
   /* Add any other styles you want for the description */
 }
 
+.post-content {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  grid-column: 1; /* Occupies the first column */
+}
+
+
+
 .post-header {
   grid-column: 2; /* Place the header in the second column */
   text-align: right; /* Align the text to the right */
@@ -106,6 +112,23 @@ padding: 20px;
   /* Add any other styles you wish to apply to the username */
 }
 
+.post-footer {
+  padding: 1px;
+  border-radius: 4px;
+  margin: 5px;
+  background-color: #778260;
+  color: #f9f8d4;
+  margin-top: auto; /* Pushes footer to the bottom of the container */
+  align-self: flex-end; /* Aligns footer to the right */
+  cursor: pointer;
+  transition: background-color 0.1s ease-in;
+  
+}
+
+
+.post-footer:hover {
+  background-color: #b1cc11; /* Light grey color */
+}
 
 .grid-item-post {
 background-color: #f2eedd;
