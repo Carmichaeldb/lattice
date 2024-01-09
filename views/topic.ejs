@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/_head') %>
+<%- include('nav') %>
+
+<body>
+  <div class="d-flex flex-wrap container">
+    <% topicsWithPosts.forEach(topicWithPosts => { %>
+      <!-- Display the topic name -->
+      <div class="mt-4">
+        <h2><%= topicWithPosts.topic_name %>X</h2> <!-- Adjust 'topicName' based on actual property name -->
+      </div>
+      
+      <% topicWithPosts.posts.forEach(post => { %>
+        <div class="card box-shadow d-flex flex-column">
+          <div class="card-body flex-grow-1">
+            <h3 class="card-subtitle mb-3 text-muted"><%= post.title %></h3> <!-- Assuming each post has a title -->
+            <!-- Other post details can be added here -->
+          </div>
+        </div>
+      <% }); %>
+    <% }); %>
+  </div>
+</body>
+
+</html>
