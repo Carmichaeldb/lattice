@@ -5,17 +5,26 @@
   <%- include('nav') %>
 
     <body>
-      <main>
+      <div class="d-flex flex-wrap container">
         <% searchResult.forEach((element)=>{ %>
-          <p>
-            <%= element.topic %><br>
-              <%=element.title %><br>
-                <a href=<%=element.url %>> <%= element.url %></a><br>
-                <%=element.description %>
-          </p>
-          <% }) %>
-
-      </main>
+          <div class="card box-shadow d-flex flex-column">
+            <div class="card-body flex-grow-1">
+              <h1 class="card-title mb-2">
+                <%= element.title %>
+              </h1>
+              <h3 class="card-subtitle mb-3 text-muted">
+                <%= element.topic %>
+              </h3>
+              <p class="card-text">
+                <%= element.description %>
+              </p>
+              <a href="<%=element.url%>" class="card-text">
+                <%= element.url %>
+              </a>
+            </div>
+          </div>
+          <% })%>
+      </div>
     </body>
 
 </html>
