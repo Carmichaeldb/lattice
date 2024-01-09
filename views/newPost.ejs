@@ -9,23 +9,23 @@
       <form method="POST" action="/users/new">
         <label for="createPost" class="form-label">CREATE NEW POST</label>
         <div class="form-floating mb-3">
-          <input class="form-control" type="text" placeholder="Title" style="width: 300px;">
+          <input class="form-control" type="text" name="title" placeholder="Title" style="width: 300px;">
           <label for="floatingInput">Title</label>
         </div>
         <div class="form-floating mb-3">
-          <input type="text" class="form-control" id="title" placeholder="Topic">
-          <label for="title">Topic</label>
+          <input type="text" class="form-control" name="topic" id="topic" placeholder="Topic">
+          <label for="topic">Topic</label>
         </div>
         <div class="form-floating mb-3">
-          <input type="text" class="form-control" id="Url" placeholder="Url">
-          <label for="Url">Url</label>
+          <input type="text" class="form-control" name="url" id="url" placeholder="Url">
+          <label for="url">Url</label>
         </div>
         <div class="form-floating mb-3">
-          <input type="text" class="form-control" id="description" placeholder="Description">
+          <input type="text" class="form-control" name="description" id="description" placeholder="Description">
           <label for="description">Description</label>
         </div>
         <div class="form-floating mb-3">
-          <input type="text" class="form-control" id="author" placeholder="Author">
+          <input type="text" class="form-control" name="author" id="author" placeholder="Author">
           <label for="author">Author</label>
         </div>
 
