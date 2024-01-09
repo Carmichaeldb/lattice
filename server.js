@@ -43,22 +43,8 @@ const postsRoutes = require('./routes/posts');
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 app.use('/', postsRoutes);
-<<<<<<< 368547652c459f7136045ee98ecc5befb6d1b642
-app.use('/users', usersRoutes);
-app.use('/search', searchRoutes);
-
-=======
 app.use('/', usersRoutes);
->>>>>>> Add: checkUser query to queries/users.js, Add: login route, session-cookie creation to userId 1, Add: checking db for userId from cookie and render users view if true, Edit: users.ejs to welcome user.
-// Note: mount other resources here, using the same pattern above
-
-// Home page
-// Warning: avoid creating more routes in this file!
-// Separate them into separate routes files (see above).
-
-// app.get('/', (req, res) => {
-//   res.render('index');
-// });
+app.use('/search', searchRoutes);
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

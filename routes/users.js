@@ -6,14 +6,10 @@
  */
 
 const express = require('express');
-<<<<<<< 368547652c459f7136045ee98ecc5befb6d1b642
 const router = express.Router();
 
 const { insertNewPostByUser } = require('../db/queries/users');
-=======
-const router  = express.Router();
 const { checkUser } = require("../db/queries/users.js");
->>>>>>> Add: checkUser query to queries/users.js, Add: login route, session-cookie creation to userId 1, Add: checking db for userId from cookie and render users view if true, Edit: users.ejs to welcome user.
 
 // render users page
 router.get('/users/:userid', (req, res) => {
@@ -45,6 +41,12 @@ router.get('/login', (req, res) => {
   res.redirect("/");
 });
 
+// logs out user
+router.get('/logout', (req, res) => {
+  req.session = null;
+  res.redirect("/");
+});
+
 //for create button to render create new post form
 router.get('/new', (req, res) => {
   console.log("inside get users/new:");
@@ -66,11 +68,6 @@ router.post('/new', (req, res) => {
     .catch((err) => {
       console.log("Error:", err.message);
     });
-});
-
-router.post('/logout', (req, res) => {
-  req.session = null;
-  res.redirect("/");
 });
 
 module.exports = router;

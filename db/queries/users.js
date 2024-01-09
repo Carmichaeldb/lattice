@@ -49,4 +49,4 @@ const insertNewPostByUser = function (title, topic, url, description, author) {
     });
 };
 
-module.exports = { getUsers, insertNewPostByUser };
+module.exports = { checkUser, insertNewPostByUser };
