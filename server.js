@@ -45,6 +45,7 @@ const postRenderRoutes = require('./routes/postRenderTemp');
 /////////////// >>>>> new code
 const topicsRoutes = require('./routes/topics');///topic route
 const commentRoutes = require('./routes/comments');
+const ratingRoutes = require('./routes/ratingRoutes');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -59,6 +60,8 @@ app.use('/posts', postsRoutes);
 app.use('/posts/topics', topicsRoutes);
 app.use('/search', searchRoutes);
 app.use('/', commentRoutes);
+app.use('/', ratingRoutes);
+
 
 //TEMP ROUTE FOR TEST
 app.use('/', postRenderRoutes);
