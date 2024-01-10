@@ -1,0 +1,7 @@
+<!-- commentForm.ejs -->
+
+<form action="/posts/<%= postId %>/comments" method="POST">
+  <input type="hidden" name="postId" value="<%= postId %>">
+  <textarea name="commentText" placeholder="Add your comment here..." required></textarea>
+  <button type="submit">Submit Comment</button>
+</form>
