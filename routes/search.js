@@ -2,14 +2,19 @@ const express = require('express');
 const router = express.Router();
 
 const { getSearch } = require('../db/queries/search');
+const { getUser } = require("../db/queries/users.js");
 
 router.get('/', (req, res) => {
   console.log("inside router");
   const searchText = req.query.search; //search is name of the input field
-  getSearch(searchText)
-    .then((posts) => {
-      console.log("posts::", posts);
-      const templateVars = { posts };
+  const userId = req.session["userId"];
+  Promise.all([getSearch(searchText), getUser(userId)])
+    .then(([posts, user]) => {
+      console.log("user::", user);
+      const userId = user[0].id;
+      const username = user[0].username;
+      console.log("posts::", posts)
+      const templateVars = { posts, userId, username };
       res.render('index', templateVars);
     })
     .catch((err) => {
