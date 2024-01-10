@@ -18,11 +18,13 @@
         </li>
         <li class="nav-item">
           <a class="navbar-brand" href="#">
-            <img src="../images/user1.png" alt="userProfile" width="60" height="48">
+            <img src="../images/user1.png" alt="userImage" width="60" height="48">
           </a>
         </li>
         <li class="nav-item">
-          <a href="/users/:user_id" class="nav-link">Username</a>
+          <a href="/users/<%= userId %>" class="nav-link">
+            <%=username%>
+          </a>
         </li>
         <li class="nav-item">
           <a href="/login" class="nav-link">Login</a>
