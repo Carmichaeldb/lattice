@@ -1,0 +1,12 @@
+<!-- commentForm.ejs -->
+
+<% if (user) { %> <!-- Assuming 'user' is the variable representing the logged-in user -->
+  <div class="comment-form">
+    <form action="/posts/<%= postId %>/comments" method="post">
+      <textarea name="commentText" placeholder="Write your comment here..." required></textarea>
+      <button type="submit">Post Comment</button>
+    </form>
+  </div>
+<% } else { %>
+  <p>Please <a href="/login">login</a> to post a comment.</p>
+<% } %>
