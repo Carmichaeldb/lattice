@@ -53,9 +53,8 @@ app.use('/', usersRoutes);
 
 
 /////////////// >>>>> new code
-app.use('/topics', topicsRoutes);
-
-
+app.use('/posts', postsRoutes);
+app.use('/posts/topics', topicsRoutes);
 app.use('/search', searchRoutes);
 
 app.listen(PORT, () => {
