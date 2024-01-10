@@ -14,13 +14,19 @@ const { getAllPosts } = require('../db/queries/allPosts');
 const { getPost, getComments, getLikes, getRating } = require('../db/queries/getPost');
 const { addComment, addRating } = require('../db/queries/insertQueries');
 
+const { getUser } = require("../db/queries/users.js");
 
 /////////////////////// GET REQUESTS ///////////////////////
 // Home page
 router.get('/', (req, res) => {
-  getAllPosts()
-    .then(posts => {
-      const templateVars = { posts };
+  console.log("inside get / ,posts.js::");
+  const userId = req.session["userId"];
+  Promise.all([getAllPosts(), getUser(userId)])
+    .then(([posts, user]) => {
+      console.log("user::", user);
+      const userId = user[0].id;
+      const username = user[0].username;
+      const templateVars = { posts, userId, username };
       res.render('index', templateVars);
     })
     .catch(err => {
