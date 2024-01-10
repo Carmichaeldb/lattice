@@ -1,0 +1,13 @@
+<!-- ratingDisplay.ejs -->
+<div class="rating-display d-flex justify-content-end">
+  <span class="rating-number mr-2"><%= rating %> / 5</span>
+  <div class="rating-stars">
+    <% for(let i = 1; i <= 5; i++) { %>
+      <% if(i <= rating) { %>
+        <img src="/images/full-star-icon.png" alt="Full Star" class="star-icon">
+      <% } else { %>
+        <img src="/images/empty-star-icon.png" alt="Empty Star" class="star-icon">
+      <% } %>
+    <% } %>
+  </div>
+</div>
