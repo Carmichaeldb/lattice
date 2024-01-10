@@ -7,6 +7,13 @@ const checkUser = (userId) => {
     .then(data => data.rows.length > 0);
 };
 
+//get user using userId
+const getUser = (userId) => {
+  return db.query(`SELECT * FROM users
+  WHERE id = $1;`, [userId])
+    .then(data => data.rows);
+};
+
 //to get user Id using username from table users
 const getUserId = (author) => {
   console.log("INSIDE getUserId func ");
@@ -49,4 +56,4 @@ const insertNewPostByUser = function (title, topic, url, description, author) {
     });
 };
 
-module.exports = { checkUser, insertNewPostByUser };
+module.exports = { checkUser, insertNewPostByUser, getUser };
