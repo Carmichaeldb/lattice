@@ -37,6 +37,7 @@ body {
   display: flex;
   margin-left: 10px;
   left: 0;
+  cursor: pointer;
 }
 
 .back-library .library-button {
@@ -50,6 +51,6 @@ body {
   padding: 0;
 }
 
-.back-library h2 {
+.back-library h3 {
   margin-left: 5px;
 }
