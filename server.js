@@ -38,11 +38,13 @@ app.use(cookieSession({
 const usersRoutes = require('./routes/users');
 const searchRoutes = require('./routes/search');
 const postsRoutes = require('./routes/posts');
+////// TEMP ROUTE FOR EJS RENDER FOR COMMENT PARTIAL
+const postRenderRoutes = require('./routes/postRenderTemp');
 
 
 /////////////// >>>>> new code
 const topicsRoutes = require('./routes/topics');///topic route
-
+const commentRoutes = require('./routes/comments');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -56,6 +58,10 @@ app.use('/', usersRoutes);
 app.use('/posts', postsRoutes);
 app.use('/posts/topics', topicsRoutes);
 app.use('/search', searchRoutes);
+app.use('/', commentRoutes);
+
+//TEMP ROUTE FOR TEST
+app.use('/', postRenderRoutes);
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
