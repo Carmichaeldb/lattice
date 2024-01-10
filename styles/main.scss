@@ -8,3 +8,48 @@ body {
 .card {
   width: 300px;
 }
+
+.post-container {
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 25%;
+}
+
+.post-comments {
+  max-width: 50%;
+  background-color: #EADDCA;
+  border-radius: 0 25px 25px 0
+}
+
+.post-comments .card, .post-comments form {
+  width: 100%;
+}
+
+.like-heart {
+  font-size: 20px;
+}
+
+.rating-stars {
+  font-size: 20px;
+}
+
+.back-library {
+  display: flex;
+  margin-left: 10px;
+  left: 0;
+}
+
+.back-library .library-button {
+  border-radius: 50%;
+  font-size: 25px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+.back-library h2 {
+  margin-left: 5px;
+}

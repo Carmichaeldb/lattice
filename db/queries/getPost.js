@@ -1,8 +1,10 @@
 const db = require('../connection');
 
 const getPost = (postId) => {
-  return db.query(`SELECT posts.id, url, topics.topic_name AS topic, title, description FROM posts
+  return db.query(`SELECT posts.id, url, topics.topic_name AS topic, title, description,
+  users.username as user FROM posts
   JOIN topics ON topic_id = topics.id
+  JOIN users on posts.user_id = users.id
   WHERE posts.id = $1;`, [postId])
     .then(data => {
       return data.rows;
@@ -19,8 +21,8 @@ const getComments = (postId) => {
 };
 
 const getLikes = (postId, userId) => {
-  return db.query(`SELECT count(*) as totalLikes,
-  EXISTS (SELECT 1 FROM post_likes WHERE post_id = $1 and user_id = $2) AS userLiked
+  return db.query(`SELECT count(*) as total_likes,
+  EXISTS (SELECT 1 FROM post_likes WHERE post_id = $1 and user_id = $2) AS user_liked
   FROM post_likes
   WHERE post_id = $1`, [postId, userId])
     .then(data => {
@@ -29,10 +31,10 @@ const getLikes = (postId, userId) => {
 };
 
 const getRating = (postId, userId) => {
-  return db.query(`SELECT AVG(ratings) AS average_rating,,
-  CASE WHEN user_id = $2 THEN ratings END AS user_rating
+  return db.query(`SELECT AVG(ratings) AS average_rating,
+  (SELECT ratings FROM post_ratings WHERE post_id = $1 AND user_id = $2) AS user_rating
   FROM post_ratings
-  WHERE post_id = $1`, [postId, userId])
+  WHERE post_id = $1;`, [postId, userId])
     .then(data => {
       return data.rows;
     });

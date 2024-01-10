@@ -25,12 +25,29 @@ router.get('/', (req, res) => {
 });
 
 // Render Post
-router.get('/post/:id', (req, res) => {
-  const post = req.params.id;
+router.get('/posts/:id', (req, res) => {
+  const postId = req.params.id;
   const userId = req.session["userId"];
 
-
-
+  Promise.all([
+    getPost(postId),
+    getComments(postId),
+    getLikes(postId, userId),
+    getRating(postId, userId)
+  ])
+    .then(([post, comments, likes, rating]) => {
+      const templateVars = {
+        post: post[0],
+        comments: comments,
+        likes: likes[0],
+        rating: rating[0]
+      };
+      console.log(templateVars);
+      res.render('post', templateVars);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 module.exports = router;
