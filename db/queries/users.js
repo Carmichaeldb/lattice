@@ -56,4 +56,15 @@ const insertNewPostByUser = function (title, topic, url, description, author) {
     });
 };
 
-module.exports = { checkUser, insertNewPostByUser, getUser };
+//to update the user Deatils in the users table
+const updateUserDetails = (username, email, password, firstName, lastName, id) => {
+  console.log("INSIDE updateUserDetails func ");
+  return db.query(`UPDATE users SET username =$1 , email=$2, password=$3, first_name=$4, last_name=$5
+  WHERE id = $6 RETURNING *;`, [username, email, password, firstName, lastName, id])
+    .then(data => {
+      console.log("updateUserDetails::::data.rows[0].id:", data.rows);
+      return data.rows[0];
+    });
+};
+
+module.exports = { checkUser, insertNewPostByUser, getUser, updateUserDetails };
