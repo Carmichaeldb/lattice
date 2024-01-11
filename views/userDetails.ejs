@@ -1,0 +1,47 @@
+<!-- to create new post by the user -->
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/_head') %>
+  <%- include('nav') %>
+
+    <body>
+      <form method="GET" action="/users/edit">
+        <div class="container text-center">
+          <div class="col">
+            <div class="row">
+              <img src="../images/user<%=userId%>.png" alt="userImage" class="rounded">
+            </div>
+            <div class="row">
+              <label for="userName" class="form-label">
+                <%=username%>
+              </label>
+            </div>
+            <div class="row">
+              <button type="submit" class="btn btn-primary">Edit</button>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <div>
+        <a href="/createdPosts" id="createdPosts">Created Posts</a>
+        <a href="/likedPosts" id="likedPosts">Liked Posts</a>
+        <a href="/ratedPosts" id="ratedPosts">Rated Posts</a>
+        <section class="createdPosts" style="display:none;">
+          createdPosts SECTION
+        </section>
+
+        <section class="likedPosts" style="display:none;">
+          likedPosts SECTION
+        </section>
+
+        <section class="ratedPosts" style="display:none;">
+          ratedPosts SECTION
+        </section>
+      </div>
+
+
+    </body>
+
+</html>
