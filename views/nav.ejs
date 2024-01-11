@@ -16,22 +16,26 @@
         <li class="nav-item">
           <a href="/users/new" class="nav-link">Create</a>
         </li>
-        <li class="nav-item">
-          <a class="navbar-brand" href="#">
-            <img src="../images/user1.png" alt="userImage" width="60" height="48">
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="/users/<%= userId %>" class="nav-link">
-            <%=username%>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="/login" class="nav-link">Login</a>
-        </li>
-        <li class="nav-item">
-          <a href="/logout" class="nav-link">Logout</a>
-        </li>
+
+        <% if(email) { %>
+          <li class="nav-item">
+            <a class="navbar-brand" href="#">
+              <img src="../images/user<%=userId%>.png" alt="userImage" width="60" height="48">
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/users/<%= userId %>" class="nav-link">
+              <%=username%>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/logout" class="nav-link">Logout</a>
+          </li>
+          <% } else { %>
+            <li class="nav-item">
+              <a href="/login" class="nav-link">Login</a>
+            </li>
+            <% } %>
       </ul>
     </div>
   </div>
