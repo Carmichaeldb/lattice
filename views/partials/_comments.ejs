@@ -1,0 +1,28 @@
+<!-- Comments Section in a Bootstrap Card -->
+<div class="card">
+  <div class="card-header">
+    Comments
+  </div>
+  <div class="card-body">
+    <% if (comments && comments.length > 0) { %>
+      <% comments.forEach(comment => { %>
+        <div class="border rounded p-2 mb-2">
+          <p class="mb-0"><%= comment.comment_text %></p>
+          <!-- Additional comment details can go here -->
+        </div>
+      <% }) %>
+    <% } else { %>
+      <p>No comments yet.</p>
+    <% } %>
+  </div>
+</div>
+
+<!-- Comment Form Partial in a Bootstrap Card -->
+<div class="card mt-4">
+  <div class="card-header">
+    Leave a Comment
+  </div>
+  <div class="card-body">
+    <%- include('./commentForm', { user: user, postId: post.id }) %>
+  </div>
+</div>
