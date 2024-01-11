@@ -25,29 +25,9 @@
               <span class="rating-stars">&#x2B50;&#x2B50;&#x2B50;&#x2B50;&#x2B50; <%= parseFloat(rating.average_rating).toFixed(1) %></span>
             </div>
             <p>Author: <%= post.user %></p>
-            <div class="comments">
-              <div class="card mb-2">
-                <form>
-                  <div class="mb-3 card-body">
-                    <label for="comment" class="form-label">New Comment</label>
-                    <input type="text" class="form-control" id="new-comment" />
-                    <button type="submit" class="btn btn-primary mt-2">Submit</button>
-                  </div>
-                </form>
-              </div>
-              <% for (let comment of comments) { %>
-              <div class="card mb-2">
-                <div class="card-body">
-                  <p class="card-text"><%= comment.comment_text %></p>
-                  <div class="card-footer text-muted">
-                    <p>
-                      <%= comment.user %> <%= new Date(comment.comment_date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) %>
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <% } %>
-            </div>
+            
+            <!-- Include Comments Partial -->
+            <%- include('partials/_comments', { comments: comments, user: user, post: post }) %>
         </div>
       </div>
     </div>
