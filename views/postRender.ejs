@@ -24,25 +24,9 @@
             <!-- Link to Original Post URL -->
             <a href="<%= post.url %>" class="btn btn-primary mb-4">LINK</a>
 
-            <!-- Comments Section -->
-            <h5 class="mt-4 mb-2">Comments</h5>
-            <% if (comments && comments.length > 0) { %>
-              <% comments.forEach(comment => { %>
-                <div class="border rounded p-2 mb-2">
-                  <p class="mb-0"><%= comment.comment_text %></p>
-                  <!-- Additional comment details can go here -->
-                </div>
-              <% }) %>
-            <% } else { %>
-              <p>No comments yet.</p>
-            <% } %>
-
-            <!-- Comment Form Partial -->
-            <%- include('partials/commentForm', { user: user, postId: post.id }) %>
+            <!-- Include the Comments Partial -->
+            <%- include('partials/_comments', { comments: comments, user: user, post: post }) %>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</body>
-</html>
+   
