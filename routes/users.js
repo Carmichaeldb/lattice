@@ -107,13 +107,12 @@ router.post('/users/:userid', (req, res) => { //save button
   updateUserDetails(username, email, password, firstName, lastName, userId)
     .then((userDetails) => {
       console.log("userDetails::", userDetails);
-      const userId = userDetails[0].id;
+     // const userId = userDetails[0].id;
       res.redirect("/users/" + userId);
     })
     .catch((err) => {
       console.log("Error:", err.message);
     });
 });
-
 
 module.exports = router;
