@@ -29,17 +29,4 @@ const getUserLikedPosts = (userId) => {
     });
 };
 
-
-const getUserRatedPosts = (userId) => {
-  console.log("inside getUserRatedPosts");
-  return db.query(`SELECT posts.id, url, topics.topic_name AS topic, title, description FROM posts
-  JOIN topics ON topic_id = topics.id
-  JOIN post_ratings ON posts.id =post_id where post_ratings.user_id =$1;`, [userId])
-    .then(data => {
-      console.log(" data.rows::", data.rows);
-      return data.rows;
-    });
-};
-
-
-module.exports = { getAllPosts, getUserPosts, getUserLikedPosts, getUserRatedPosts };
+module.exports = { getAllPosts, getUserPosts, getUserLikedPosts };
