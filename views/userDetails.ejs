@@ -20,6 +20,33 @@
             <div class="row">
               <button type="submit" class="btn btn-primary">Edit</button>
             </div>
+
+            <div class="userEdit">
+              <form method="POST" action="/users/:userid">
+                <div class="form-floating mb-3">
+                  <input class="form-control" type="text" name="username" placeholder="Username" style="width: 300px;">
+                  <label for="Username">Username</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control" name="email" id="email" placeholder="Email">
+                  <label for="email">Email</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control" name="password" id="password" placeholder="Password">
+                  <label for="password">Password</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control" name="firstName" id="firstName" placeholder="First name">
+                  <label for="firstName">First name</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Last name">
+                  <label for="lastName">Last name</label>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Save</button>
+              </form>
+            </div>
           </div>
         </div>
       </form>
@@ -27,21 +54,12 @@
       <div>
         <a href="/createdPosts" id="createdPosts">Created Posts</a>
         <a href="/likedPosts" id="likedPosts">Liked Posts</a>
-        <a href="/ratedPosts" id="ratedPosts">Rated Posts</a>
-        <section class="createdPosts" style="display:none;">
-          createdPosts SECTION
-        </section>
-
-        <section class="likedPosts" style="display:none;">
-          likedPosts SECTION
-        </section>
-
-        <section class="ratedPosts" style="display:none;">
-          ratedPosts SECTION
-        </section>
       </div>
-
-
+      <div class="d-flex flex-wrap container">
+        <% for (let post of posts) { %>
+          <%- include('./partials/_post', {post: post}) %>
+            <% } %>
+      </div>
     </body>
 
 </html>
