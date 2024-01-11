@@ -3,32 +3,18 @@
 <%- include('./partials/_head') %>
 <%- include('nav') %>
 
-<head>
-  <!-- Custom CSS -->
-  <style>
-    .hover-effect:hover {
-      background-color: #f8f9fa; /* Light grey background on hover */
-      border-color: #dee2e6; /* Light grey border on hover */
-    }
-  </style>
-</head>
-
 <body>
   <div class="d-flex flex-wrap container">
-    <% topicsWithPosts.forEach(topicWithPosts => { %>
+    <% topics.forEach(topics => { %>
       <!-- Display the topic name -->
-      <div class="topic-card card box-shadow d-flex flex-column cursor-pointer p-3 hover-effect" data-topic-name="<%= topicWithPosts.topic_name %>">
-        <h2><%= topicWithPosts.topic_name %></h2>  
-      </div> 
+      <div class="topic-card">
+        <a href="/search?search=<%= topics.topic_name %>">
+        <div class="card box-shadow d-flex flex-column cursor-pointer p-3" data-topic-name="<%= topics.topic_name %>">
+          <h2><%= topics.topic_name %></h2>
+        </div>
+        </a>
+      </div>
     <% }); %>
   </div>
-  <!-- JavaScript to handle click event -->
-  <script>
-    document.querySelectorAll('.topic-card').forEach(div => {
-      div.addEventListener('click', function() {
-        window.location.href = `/search?search=${encodeURIComponent(this.dataset.topicName)}`;
-      });
-    });
-  </script>
 </body>
 </html>

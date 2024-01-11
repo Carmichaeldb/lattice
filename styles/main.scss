@@ -54,3 +54,15 @@ body {
 .back-library h3 {
   margin-left: 5px;
 }
+
+
+.topic-card .card:hover {
+  background-color: #f8f9fa; /* Light grey background on hover */
+  border-color: #dee2e6; /* Light grey border on hover */
+  text-decoration: none;
+}
+
+.topic-card a {
+  color: black;
+  text-decoration: none;
+}
