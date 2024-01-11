@@ -59,7 +59,18 @@ router.post('/users/new', (req, res) => {
 //displays edit form to change user details
 router.get('/users/edit', (req, res) => {
   //getUser func
-  res.render("edit");
+  console.log("inside get users/edit:");
+  const userId = req.session["userId"];
+  getUser(userId)
+    .then((user) => {
+      console.log("user::", user);
+      const userId = user[0].id;
+      const username = user[0].username;
+      const email = user[0].email;
+      const templateVars = { userId, username, email };
+      res.render('edit', templateVars);
+    });
+
 });
 
 // render user profile page
@@ -98,6 +109,7 @@ router.get('/users/:userid', (req, res) => {
 
 //to save or update user Details in db
 router.post('/users/:userid', (req, res) => { //save button
+  console.log("inside post /users/:userid");
   const username = req.body.username;
   const email = req.body.email;
   const password = req.body.password;
@@ -107,7 +119,7 @@ router.post('/users/:userid', (req, res) => { //save button
   updateUserDetails(username, email, password, firstName, lastName, userId)
     .then((userDetails) => {
       console.log("userDetails::", userDetails);
-     // const userId = userDetails[0].id;
+      // const userId = userDetails[0].id;
       res.redirect("/users/" + userId);
     })
     .catch((err) => {
