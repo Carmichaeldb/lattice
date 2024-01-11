@@ -3,6 +3,7 @@ const router = express.Router();
 const { getAllTopics } = require('../db/queries/topicQuery');
 
 router.get('/', async (req, res) => {
+  console.log("in route");
   try {
     const topics = await getAllTopics();
     const templateVars = { topics };

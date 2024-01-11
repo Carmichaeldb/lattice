@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
   const searchText = req.query.search; //search is name of the input field
   getSearch(searchText)
     .then((posts) => {
-      console.log("posts::", posts)
+      console.log("posts::", posts);
       const templateVars = { posts };
       res.render('index', templateVars);
     })

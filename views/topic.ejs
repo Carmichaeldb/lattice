@@ -5,12 +5,12 @@
 
 <body>
   <div class="d-flex flex-wrap container">
-    <% topics.forEach(topics => { %>
+    <% topics.forEach(topic => { %>
       <!-- Display the topic name -->
       <div class="topic-card">
-        <a href="/search?search=<%= topics.topic_name %>">
-        <div class="card box-shadow d-flex flex-column cursor-pointer p-3" data-topic-name="<%= topics.topic_name %>">
-          <h2><%= topics.topic_name %></h2>
+        <a href="/search?search=<%= topic.topic_name %>">
+        <div class="card box-shadow d-flex flex-column cursor-pointer p-3" data-topic-name="<%= topic.topic_name %>">
+          <h2><%= topic.topic_name %></h2>
         </div>
         </a>
       </div>

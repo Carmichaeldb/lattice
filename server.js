@@ -38,23 +38,18 @@ app.use(cookieSession({
 const usersRoutes = require('./routes/users');
 const searchRoutes = require('./routes/search');
 const postsRoutes = require('./routes/posts');
-
-
-/////////////// >>>>> new code
 const topicsRoutes = require('./routes/topics');///topic route
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
+
 app.use('/', postsRoutes);
 app.use('/', usersRoutes);
-
-
-
-/////////////// >>>>> new code
-app.use('/posts', postsRoutes);
-app.use('/posts/topics', topicsRoutes);
 app.use('/search', searchRoutes);
+app.use('/topics', topicsRoutes);
+
+
 
 
 app.listen(PORT, () => {
