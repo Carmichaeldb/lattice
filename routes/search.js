@@ -13,8 +13,9 @@ router.get('/', (req, res) => {
       console.log("user::", user);
       const userId = user[0].id;
       const username = user[0].username;
+      const email = user[0].email;
       console.log("posts::", posts)
-      const templateVars = { posts, userId, username };
+      const templateVars = { posts, userId, username, email };
       res.render('index', templateVars);
     })
     .catch((err) => {
