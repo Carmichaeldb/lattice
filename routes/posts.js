@@ -6,15 +6,15 @@
  */
 
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 router.use(express.json());
 
 // Queries
 const { getPost, getComments, getLikes, getRating } = require('../db/queries/getPost');
 const { addComment, addRating } = require('../db/queries/insertQueries');
 
-const { getAllPosts, getUserPosts, getUserLikedPosts, getUserRatedPosts } = require('../db/queries/allPosts');
 const { getAllPosts } = require('../db/queries/allPosts');
+
 const { getUser } = require("../db/queries/users.js");
 
 /////////////////////// GET REQUESTS ///////////////////////
@@ -32,32 +32,6 @@ router.get('/', (req, res) => {
       res.render('index', templateVars);
     })
     .catch(err => {
-      console.log(err);
-    });
-});
-
-// Render Post
-router.get('/posts/:id', (req, res) => {
-  const postId = req.params.id;
-  const userId = req.session["userId"];
-
-  Promise.all([
-    getPost(postId),
-    getComments(postId),
-    getLikes(postId, userId),
-    getRating(postId, userId)
-  ])
-    .then(([post, comments, likes, rating]) => {
-      const templateVars = {
-        post: post[0],
-        comments: comments,
-        likes: likes[0],
-        rating: rating[0]
-      };
-      console.log(templateVars);
-      res.render('post', templateVars);
-    })
-    .catch((err) => {
       console.log(err);
     });
 });
