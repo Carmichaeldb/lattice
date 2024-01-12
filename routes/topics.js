@@ -1,12 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const { getAllTopics } = require('../db/queries/topicQuery');
+const { getUser } = require("../db/queries/users.js");
 
 router.get('/', async (req, res) => {
   console.log("in route");
   try {
-    const topics = await getAllTopics();
-    const templateVars = { topics };
+    const userId = req.session["userId"];
+    const [topics, user] = await Promise.all([getAllTopics(), getUser(userId)]);
+    console.log("topics:", topics, "user:", user);
+    const templateVars = { topics, user: user[0] };
     // Pass the topics to the EJS template
     res.render('topic', templateVars);
   } catch (err) {
