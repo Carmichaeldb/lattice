@@ -89,7 +89,7 @@ body {
 .postRatings span{
   cursor: pointer;
   transition: color .2s;
-  font-size: 20px;
+  font-size: 25px;
 }
 .postRatings span:hover{
   color: Yellow;
@@ -106,4 +106,21 @@ body {
 
 .postRatings span.rated {
   color: Yellow;
+}
+
+.likes {
+  font-size: 25px;
+}
+
+.like-heart {
+  cursor: pointer;
+  font-size: 25px;
+}
+
+.like-heart:hover {
+  color: red;
+}
+
+.liked {
+  color: red;
 }

@@ -26,4 +26,20 @@ const addRating = (userId, postId, rating) => {
     });
 };
 
-module.exports = { addComment, addRating };
+const addLike = (postId, userId) => {
+  const checkQuery = `SELECT * FROM post_likes WHERE user_id = $1 AND post_id = $2`;
+  return db.query(checkQuery, [userId, postId])
+    .then(result => {
+      if (result.rows.length > 0) {
+        // If a like exists, delete it
+        const deleteQuery = `DELETE FROM post_likes WHERE user_id = $1 AND post_id = $2`;
+        return db.query(deleteQuery, [userId, postId]);
+      } else {
+        // If no like exists, insert a new one
+        const insertQuery = `INSERT INTO post_likes (user_id, post_id) VALUES ($1, $2)`;
+        return db.query(insertQuery, [userId, postId]);
+      }
+    });
+};
+
+module.exports = { addComment, addRating, addLike };
