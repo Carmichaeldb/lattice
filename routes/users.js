@@ -7,7 +7,7 @@
 
 const express = require('express');
 const router = express.Router();
-
+const { getAllTopics } = require('../db/queries/topicQuery');
 const { checkUser, getUser, insertNewPostByUser, updateUserDetails } = require("../db/queries/users.js");
 const { getUserPosts, getUserLikedPosts } = require('../db/queries/allPosts');
 
@@ -29,27 +29,28 @@ router.get('/logout', (req, res) => {
 router.get('/users/new', (req, res) => {
   console.log("inside get users/new:");
   const userId = req.session["userId"];
-  getUser(userId)
-    .then((user) => {
+  Promise.all([getAllTopics(), getUser(userId)])
+    .then(([topics, user]) => {
       console.log("user::", user);
-      const userId = user[0].id;
-      const username = user[0].username;
-      const email = user[0].email;
-      const templateVars = { userId, username, email };
+      console.log("topics::", topics);
+      const templateVars = { topics, user: user[0] };
       res.render('newPost', templateVars);
     });
 });
 
 //for submit button to make entries of new post created in db and to redirect it to created post
 router.post('/users/new', (req, res) => {
+  const userId = req.session["userId"];
   const title = req.body.title;
-  const topic = req.body.topic;
+  const topicId = req.body.topic;
   const url = req.body.url;
   const description = req.body.description;
-  const author = req.body.author;
-  insertNewPostByUser(title, topic, url, description, author)
+  //const author = req.body.author;
+  console.log("topic::", topicId);
+  // console.log("author::", author)
+  insertNewPostByUser(title, topicId, url, description, userId)
     .then((resultPostId) => {
-      console.log("resultId::", resultPostId)
+      console.log("resultId::", resultPostId);
       res.redirect("/posts/" + resultPostId);  // will display specific post
     })
     .catch((err) => {
@@ -74,10 +75,7 @@ router.get('/users/:userid', (req, res) => {
         Promise.all([getUserPosts(userId), getUserLikedPosts(userId), getUser(userId)])
           .then(([posts, posts1, user]) => {
             console.log("user::", user);
-            const userId = user[0].id;
-            const username = user[0].username;
-            const email = user[0].email;
-            const templateVars = { posts, posts1, userId, username, email };
+            const templateVars = { posts, posts1, user: user[0] };
             res.render("userDetails", templateVars);
           })
           .catch((err) => {
