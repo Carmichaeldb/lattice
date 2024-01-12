@@ -66,3 +66,33 @@ body {
   color: black;
   text-decoration: none;
 }
+
+.no-resize {
+  resize: none;
+}
+
+.postRatings{
+  display: flex;
+  flex-direction: row-reverse;
+}
+.postRatings span{
+  cursor: pointer;
+  transition: color .2s;
+  font-size: 20px;
+}
+.postRatings span:hover{
+  color: Yellow;
+}
+.postRatings span:hover ~ span{
+  color: Yellow;
+}
+.postRatings span[data-clicked]{
+  color: Yellow;
+}
+.postRatings span[data-clicked] ~ span{
+  color: Yellow;
+}
+
+.postRatings span.rated {
+  color: Yellow;
+}

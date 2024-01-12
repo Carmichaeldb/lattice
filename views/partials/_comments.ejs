@@ -1,0 +1,28 @@
+<div class="comments">
+  <div class="card mb-2">
+    <form action="/posts/<%= postId %>/comments" method="POST">
+      <div class="mb-3 card-body">
+        <label for="comment" class="form-label col-12">New Comment</label>
+        <input type="hidden" name="postId" value="<%= postId %>">
+        <textarea class="no-resize col-12" name="commentText" placeholder="Add your comment here..." rows="2" required></textarea>
+        <button type="submit" class="btn btn-primary mt-2">Submit</button>
+      </div>
+    </form>
+  </div>
+  <% if (comments && comments.length > 0) { %>
+  <% for (let comment of comments) { %>
+  <div class="card mb-2">
+    <div class="card-body rounded">
+      <p class="card-text"><%= comment.comment_text %></p>
+      <div class="card-footer text-muted">
+        <p>
+          <%= comment.user %> <%= new Date(comment.comment_date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) %>
+        </p>
+      </div>
+    </div>
+  </div>
+  <% } %>
+  <% } else { %>
+    <p>No comments yet.</p>
+    <% } %>
+</div>

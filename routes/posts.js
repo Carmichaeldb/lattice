@@ -7,11 +7,15 @@
 
 const express = require('express');
 const router  = express.Router();
+router.use(express.json());
 
 // Queries
 const { getAllPosts } = require('../db/queries/allPosts');
 const { getPost, getComments, getLikes, getRating } = require('../db/queries/getPost');
+const { addComment, addRating } = require('../db/queries/insertQueries');
 
+
+/////////////////////// GET REQUESTS ///////////////////////
 // Home page
 router.get('/', (req, res) => {
   getAllPosts()
@@ -47,6 +51,36 @@ router.get('/posts/:id', (req, res) => {
     })
     .catch((err) => {
       console.log(err);
+    });
+});
+
+/////////////////////// POST REQUESTS ///////////////////////
+
+router.post('/posts/:postId/comments', (req, res) => {
+  const postId = req.params.postId;
+  const commenterId = req.session.userId;
+  const { commentText } = req.body;
+
+  addComment(commenterId, postId, commentText)
+    .then(() => {
+      res.redirect('/posts/' + postId); // Redirect back to the post
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).send('Server Error');
+    });
+});
+
+router.post('/posts/:postId/rating', (req, res) => {
+  const postId = req.params.postId;
+  const userId = req.session.userId; // Make sure you have the session set up
+  const { rating } = req.body;
+
+  addRating(userId, postId, rating)
+    .then(() => res.status(200).json({ message: "Rating added successfully" }))
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ error: 'Server Error' });
     });
 });
 
