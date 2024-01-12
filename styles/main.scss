@@ -9,6 +9,17 @@ body {
   width: 300px;
 }
 
+#editProfileForm {
+  width: 400px;
+}
+
+.faded-divider {
+  border: none;
+  height: 2px;
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 200px;
+}
+
 .post-container {
   width: 80%;
   margin-left: 10%;
