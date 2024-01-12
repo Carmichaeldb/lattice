@@ -1,26 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('./partials/_head') %> <%- include('nav') %>
+<%- include('./partials/_head') %> <%- include('nav') %>
 
-  <body>
-    <div class="container d-flex justify-content-center align-items-center">
-      <div class="back-library" onclick="history.back()">
-        <button type="button" class="btn btn-secondary library-button">&lt;</button>
-        <h3>Library</h3>
-      </div>
-    <div class="post-container col-md-10">
-      <h2 class="text-center"><%= post.topic %></h2>
-      <div class="row">
-        <div class="col-md-6 post-main border border-2">
-          <h1 class="mt-3"><%= post.title %></h1>
-          <a href="<%= post.url %>"><%= post.url %></a>
-          <p><%= post.description %></p>
-        </div>
-        <div class="col-md-4 post-comments border border-2">
-            <div class="d-flex mb-2 mt-3">
-              <div class="me-2 likes">
-                <%= likes.total_likes %><span class="like-heart <% if (likes.user_liked) { %> liked <% } %>" data-post-id="<%= post.id %>" onclick="toggleLike(<%= post.id %>)">&#x2665;</span>
-              </div>
+    <body>
+      <div class="container-fluid">
+        <div class="d-flex align-items-center">
+          <div class="col-md-1">
+            <div class="back-library" onclick="history.back()">
+              <button type="button" class="btn btn-secondary library-button">&lt;</button>
+              <h3>Library</h3>
+            </div>
+          </div>
+          <div class="col-md-10 post-container">
+            <div class="post-container col-md-10">
+              <h2 class="text-center">
+                <%= post.topic %>
+              </h2>
+              <div class="row">
+                <div class="col-md-6 post-main border border-2">
+                  <h1 class="mt-3">
+                    <%= post.title %>
+                  </h1>
+                  <a href="<%= post.url %>">
+                    <%= post.url %>
+                  </a>
+                  <p>
+                    <%= post.description %>
+                  </p>
+                </div>
+                <div class="col-md-4 post-comments border border-2">
+                  <div class="d-flex mb-2 mt-3">
+                    <div class="me-2 likes">
+                      <%= likes.total_likes %><span class="like-heart <% if (likes.user_liked) { %> liked <% } %>"
+                          data-post-id="<%= post.id %>" onclick="toggleLike(<%= post.id %>)">&#x2665;</span>
+                    </div>
 
               <div class="rating-stars d-flex">
                 <div class="postRatings">
@@ -28,14 +41,12 @@
                     <span data-rating="<%= i %>" <% if (user) { %>onclick="ratePost(<%= post.id %>, <%= i %>)" <% } else { %> onclick="loginMessage()" <% } %> <% if (rating.user_rating >= i) { %>class="rated"<% } %>>★</span>
                   <% } %>
                 </div>
-                <%= parseFloat(rating.average_rating).toFixed(1) %>
               </div>
             </div>
             <p>Author: <%= post.user %></p>
             <%- include('./partials/_comments', { comments: comments, postId: post.id, user: user }) %>
         </div>
       </div>
-    </div>
-  </div>
-  </body>
+    </body>
+
 </html>

@@ -21,9 +21,9 @@ body {
 }
 
 .post-container {
-  width: 80%;
-  margin-left: 10%;
-  margin-right: 25%;
+  width: 100%;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 .post-comments {
@@ -36,18 +36,9 @@ body {
   width: 100%;
 }
 
-.like-heart {
-  font-size: 20px;
-}
-
-.rating-stars {
-  font-size: 20px;
-}
-
 .back-library {
   display: flex;
-  margin-left: 10px;
-  left: 0;
+  align-items: center;
   cursor: pointer;
 }
 
