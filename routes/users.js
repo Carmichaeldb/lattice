@@ -9,11 +9,12 @@ const express = require('express');
 const router = express.Router();
 
 const { checkUser, getUser, insertNewPostByUser, updateUserDetails } = require("../db/queries/users.js");
+const { getUserPosts, getUserLikedPosts } = require('../db/queries/allPosts');
 
 // logins in user
 router.get('/login', (req, res) => {
   // sets session-cookie to userId 1
-  req.session.userId = 2;
+  req.session.userId = 3;
   // redirects to index page
   res.redirect("/");
 });
@@ -56,23 +57,6 @@ router.post('/users/new', (req, res) => {
     });
 });
 
-//displays edit form to change user details
-router.get('/users/edit', (req, res) => {
-  //getUser func
-  console.log("inside get users/edit:");
-  const userId = req.session["userId"];
-  getUser(userId)
-    .then((user) => {
-      console.log("user::", user);
-      const userId = user[0].id;
-      const username = user[0].username;
-      const email = user[0].email;
-      const templateVars = { userId, username, email };
-      res.render('edit', templateVars);
-    });
-
-});
-
 // render user profile page
 router.get('/users/:userid', (req, res) => {
   const user = req.params.userid;
@@ -87,13 +71,13 @@ router.get('/users/:userid', (req, res) => {
           return;
         }
         // if user exists (true) render users view
-        getUser(userId)
-          .then((user) => {
+        Promise.all([getUserPosts(userId), getUserLikedPosts(userId), getUser(userId)])
+          .then(([posts, posts1, user]) => {
             console.log("user::", user);
             const userId = user[0].id;
             const username = user[0].username;
             const email = user[0].email;
-            const templateVars = { userId, username, email };
+            const templateVars = { posts, posts1, userId, username, email };
             res.render("userDetails", templateVars);
           })
           .catch((err) => {
