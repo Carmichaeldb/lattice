@@ -17,15 +17,15 @@
           <a href="/users/new" class="nav-link">Create</a>
         </li>
 
-        <% if(email) { %>
+        <% if(user.email) { %>
           <li class="nav-item">
             <a class="navbar-brand" href="#">
-              <img src="../images/user<%=userId%>.png" alt="userImage" width="60" height="48">
+              <img src="../images/user<%=user.id%>.png" alt="userImage" width="60" height="48">
             </a>
           </li>
           <li class="nav-item">
-            <a href="/users/<%= userId %>" class="nav-link">
-              <%=username%>
+            <a href="/users/<%=user.id %>" class="nav-link">
+              <%=user.username%>
             </a>
           </li>
           <li class="nav-item">
