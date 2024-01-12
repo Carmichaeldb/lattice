@@ -25,13 +25,13 @@
               <div class="rating-stars">
                 <div class="postRatings">
                   <% for(let i = 5; i >= 1; i--) { %>
-                    <span data-rating="<%= i %>" onclick="ratePost(<%= post.id %>, <%= i %>)" <% if (rating.user_rating >= i) { %>class="rated"<% } %>>★</span>
+                    <span data-rating="<%= i %>" <% if (user) { %>onclick="ratePost(<%= post.id %>, <%= i %>)" <% } else { %> onclick="loginMessage()" <% } %> <% if (rating.user_rating >= i) { %>class="rated"<% } %>>★</span>
                   <% } %>
                 </div>
               </div> <%= parseFloat(rating.average_rating).toFixed(1) %>
             </div>
             <p>Author: <%= post.user %></p>
-            <%- include('./partials/_comments', { comments: comments, postId: post.id }) %>
+            <%- include('./partials/_comments', { comments: comments, postId: post.id, user: user }) %>
         </div>
       </div>
     </div>

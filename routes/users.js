@@ -29,12 +29,18 @@ router.get('/logout', (req, res) => {
 router.get('/users/new', (req, res) => {
   console.log("inside get users/new:");
   const userId = req.session["userId"];
-  Promise.all([getAllTopics(), getUser(userId)])
-    .then(([topics, user]) => {
-      console.log("user::", user);
-      console.log("topics::", topics);
-      const templateVars = { topics, user: user[0] };
-      res.render('newPost', templateVars);
+  checkUser(userId)
+    .then((userFound) => {
+      if (userFound) {
+        Promise.all([getAllTopics(), getUser(userId)])
+          .then(([topics, user]) => {
+            const templateVars = { topics, user: user[0] };
+            res.render('newPost', templateVars);
+          });
+      } else {
+        res.status(401).send("Error 401: Unauthorized Access. Please login.");
+        return;
+      }
     });
 });
 
@@ -45,12 +51,8 @@ router.post('/users/new', (req, res) => {
   const topicId = req.body.topic;
   const url = req.body.url;
   const description = req.body.description;
-  //const author = req.body.author;
-  console.log("topic::", topicId);
-  // console.log("author::", author)
   insertNewPostByUser(title, topicId, url, description, userId)
     .then((resultPostId) => {
-      console.log("resultId::", resultPostId);
       res.redirect("/posts/" + resultPostId);  // will display specific post
     })
     .catch((err) => {
@@ -67,7 +69,6 @@ router.get('/users/:userid', (req, res) => {
     .then((userFound) => {
       if (userFound) {
         if (user != userId) {
-          console.log("inside checkUser");
           res.status(401).send("Error 401: Unauthorized Access. This profile does not belong to you.");
           return;
         }

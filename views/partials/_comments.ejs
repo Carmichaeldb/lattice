@@ -1,4 +1,5 @@
 <div class="comments">
+  <% if (user) { %>
   <div class="card mb-2">
     <form action="/posts/<%= postId %>/comments" method="POST">
       <div class="mb-3 card-body">
@@ -9,6 +10,7 @@
       </div>
     </form>
   </div>
+  <% } %>
   <% if (comments && comments.length > 0) { %>
   <% for (let comment of comments) { %>
   <div class="card mb-2">

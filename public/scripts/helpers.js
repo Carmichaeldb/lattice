@@ -18,3 +18,7 @@ const ratePost = function (postId, rating) {
     })
     .catch(err => console.error('Network error:', err));
 };
+
+const loginMessage = function () {
+  alert("Please login.");
+};
