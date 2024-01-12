@@ -25,10 +25,7 @@ router.get('/', (req, res) => {
   Promise.all([getAllPosts(), getUser(userId)])
     .then(([posts, user]) => {
       console.log("user::", user);
-      const userId = user[0].id;
-      const username = user[0].username;
-      const email = user[0].email;
-      const templateVars = { posts, userId, username, email };
+      const templateVars = { posts, user: user[0] };
       res.render('index', templateVars);
     })
     .catch(err => {
@@ -45,16 +42,19 @@ router.get('/posts/:id', (req, res) => {
     getPost(postId),
     getComments(postId),
     getLikes(postId, userId),
-    getRating(postId, userId)
+    getRating(postId, userId),
+    getUser(userId)
   ])
-    .then(([post, comments, likes, rating]) => {
+    .then(([post, comments, likes, rating, user]) => {
+      console.log("post::", post[0]);
       const templateVars = {
         post: post[0],
         comments: comments,
         likes: likes[0],
-        rating: rating[0]
+        rating: rating[0],
+        user: user[0]
       };
-      console.log(templateVars);
+      console.log("templateVars:", templateVars);
       res.render('post', templateVars);
     })
     .catch((err) => {
