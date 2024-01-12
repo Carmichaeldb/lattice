@@ -13,8 +13,15 @@
           <label for="title">Title</label>
         </div>
         <div class="form-floating mb-3">
-          <input type="text" class="form-control" name="topic" id="topic" placeholder="Topic">
-          <label for="topic">Topic</label>
+          <select class="form-select" id="topics" name="topic" aria-label="Floating label select">
+            <option selected>Select Topics</option>
+            <% for (let topic of topics) { %>
+              <option value="<%=topic.id%>">
+                <%=topic.topic_name%>
+              </option>
+              <% } %>
+          </select>
+          <label for="topics">Topics</label>
         </div>
         <div class="form-floating mb-3">
           <input type="text" class="form-control" name="url" id="url" placeholder="Url">
@@ -25,8 +32,10 @@
           <label for="description">Description</label>
         </div>
         <div class="form-floating mb-3">
-          <input type="text" class="form-control" name="author" id="author" placeholder="Author">
-          <label for="author">Author</label>
+          <input type="text" disabled class="form-control" name="author" id="author" placeholder="Author">
+          <label for="author">
+            <%=user.username%>
+          </label>
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>
