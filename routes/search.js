@@ -11,11 +11,8 @@ router.get('/', (req, res) => {
   Promise.all([getSearch(searchText), getUser(userId)])
     .then(([posts, user]) => {
       console.log("user::", user);
-      const userId = user[0].id;
-      const username = user[0].username;
-      const email = user[0].email;
       console.log("posts::", posts)
-      const templateVars = { posts, userId, username, email };
+      const templateVars = { posts, user: user[0] };
       res.render('index', templateVars);
     })
     .catch((err) => {
