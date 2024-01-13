@@ -16,7 +16,7 @@
   <div class="card mb-2">
     <div class="card-body rounded">
       <p class="card-text"><%= comment.comment_text %></p>
-      <div class="card-footer text-muted">
+      <div class="card-footer">
         <p>
           <%= comment.user %> <%= new Date(comment.comment_date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) %>
         </p>
