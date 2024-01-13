@@ -4,7 +4,7 @@
 <%- include('nav') %>
 
 <body>
-  <div class="d-flex flex-wrap container">
+  <div class="d-flex flex-wrap container m-3">
     <% topics.forEach(topic => { %>
       <!-- Display the topic name -->
       <div class="topic-card">
@@ -17,4 +17,5 @@
     <% }); %>
   </div>
 </body>
+<%- include('./partials/_footer') %>
 </html>

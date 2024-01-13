@@ -3,20 +3,29 @@ const ratePost = function (postId, rating) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      // Add any other headers like authentication tokens if required
     },
     body: JSON.stringify({ rating: rating })
   })
     .then(response => {
-      if (response.ok) {
-        console.log('Rating submitted successfully');
-        // Optionally, refresh the page or update the UI
-        window.location.reload();
-      } else {
-        console.error('Error submitting rating');
+      if (!response.ok) {
+        throw new Error('Error submitting rating');
       }
+      window.location.replace('/posts/' + postId);
     })
-    .catch(err => console.error('Network error:', err));
+    .catch(err => console.error('Error:', err));
+};
+
+const toggleLike = function (postId) {
+  fetch('/posts/' + postId + '/like', {
+    method: 'POST'
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Error submitting like');
+      }
+      window.location.replace('/posts/' + postId);
+    })
+    .catch(error => console.error('Error:', error));
 };
 
 const loginMessage = function () {

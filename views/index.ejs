@@ -5,11 +5,11 @@
   <%- include('nav') %>
 
     <body>
-      <div class="d-flex flex-wrap container">
+      <div class="d-flex flex-wrap container m-3">
         <% for (let post of posts) { %>
           <%- include('./partials/_post', {post: post}) %>
           <% } %>
       </div>
     </body>
-
+    <%- include('./partials/_footer') %>
 </html>

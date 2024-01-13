@@ -11,7 +11,7 @@ router.use(express.json());
 
 // Queries
 const { getPost, getComments, getLikes, getRating } = require('../db/queries/getPost');
-const { addComment, addRating } = require('../db/queries/insertQueries');
+const { addComment, addRating, addLike } = require('../db/queries/insertQueries');
 
 const { getAllPosts } = require('../db/queries/allPosts');
 
@@ -71,7 +71,7 @@ router.post('/posts/:postId/comments', (req, res) => {
 
   addComment(commenterId, postId, commentText)
     .then(() => {
-      res.redirect('/posts/' + postId); // Redirect back to the post
+      res.redirect('/posts/' + postId);
     })
     .catch(err => {
       console.error(err);
@@ -81,11 +81,27 @@ router.post('/posts/:postId/comments', (req, res) => {
 
 router.post('/posts/:postId/rating', (req, res) => {
   const postId = req.params.postId;
-  const userId = req.session.userId; // Make sure you have the session set up
+  const userId = req.session.userId;
   const { rating } = req.body;
 
   addRating(userId, postId, rating)
-    .then(() => res.status(200).json({ message: "Rating added successfully" }))
+    .then(() => {
+      res.status(200).end();
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ error: 'Server Error' });
+    });
+});
+
+router.post('/posts/:postId/like', (req, res) => {
+  const postId = req.params.postId;
+  const userId = req.session.userId;
+
+  addLike(postId, userId)
+    .then(() => {
+      res.status(200).end();
+    })
     .catch(err => {
       console.error(err);
       res.status(500).json({ error: 'Server Error' });

@@ -6,10 +6,11 @@
   <%- include('nav') %>
 
     <body>
+      <div class="container new-post m-3">
       <form method="POST" action="/users/new">
         <label for="createPost" class="form-label">CREATE NEW POST</label>
         <div class="form-floating mb-3">
-          <input class="form-control" type="text" name="title" placeholder="Title" style="width: 300px;">
+          <input class="form-control" type="text" name="title" placeholder="Title">
           <label for="title">Title</label>
         </div>
         <div class="form-floating mb-3">
@@ -40,6 +41,7 @@
 
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
+    </div>
     </body>
-
+    <%- include('./partials/_footer') %>
 </html>
