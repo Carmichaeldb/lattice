@@ -32,7 +32,7 @@
                   <div class="d-flex mb-2 mt-3">
                     <div class="me-2 likes">
                       <%= likes.total_likes %><span class="like-heart <% if (likes.user_liked) { %> liked <% } %>"
-                          data-post-id="<%= post.id %>" onclick="toggleLike(<%= post.id %>)">&#x2665;</span>
+                          data-post-id="<%= post.id %>" <% if (user) { %>onclick="toggleLike(<%= post.id %>)" <% } else { %> onclick="loginMessage()" <% } %>>&#x2665;</span>
                     </div>
 
               <div class="rating-stars d-flex">
@@ -41,7 +41,7 @@
                     <span data-rating="<%= i %>" <% if (user) { %>onclick="ratePost(<%= post.id %>, <%= i %>)" <% } else { %> onclick="loginMessage()" <% } %> <% if (rating.user_rating >= i) { %>class="rated"<% } %>>★</span>
                   <% } %>
                 </div>
-              </div>
+              </div> <%= parseFloat(rating.average_rating).toFixed(1) %>
             </div>
             <p>Author: <%= post.user %></p>
             <%- include('./partials/_comments', { comments: comments, postId: post.id, user: user }) %>
