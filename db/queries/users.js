@@ -16,7 +16,6 @@ const getUser = (userId) => {
 
 //to insert the created post by the user into tables
 const insertNewPostByUser = function (title, topicId, url, description, userId) {
-  console.log("INSIDE insertNewPostByUser func ");
   //Promise.all is a method in JavaScript that takes an array of promises and returns a
   //single promise(an array containing the fulfilled values of all the input promises, in the same order as the input promises.).
   console.log("userId::", userId, "---- topicId :: ", topicId);
@@ -24,7 +23,6 @@ const insertNewPostByUser = function (title, topicId, url, description, userId) 
       VALUES ($1,$2,$3,$4,$5,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP) RETURNING id;`,
     [userId, topicId, url, title, description])
     .then((result) => {
-      console.log("result.rows:", result.rows,);
       return result.rows[0].id;
     })
     .catch((err) => {
@@ -34,11 +32,9 @@ const insertNewPostByUser = function (title, topicId, url, description, userId) 
 
 //to update the user Deatils in the users table
 const updateUserDetails = (username, email, password, firstName, lastName, id) => {
-  console.log("INSIDE updateUserDetails func ");
   return db.query(`UPDATE users SET username =$1 , email=$2, password=$3, first_name=$4, last_name=$5
   WHERE id = $6 RETURNING *;`, [username, email, password, firstName, lastName, id])
     .then(data => {
-      console.log("updateUserDetails::::data.rows[0].id:", data.rows);
       return data.rows[0];
     });
 };

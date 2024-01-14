@@ -27,7 +27,6 @@ router.get('/logout', (req, res) => {
 
 //for create button to render create new post form
 router.get('/users/new', (req, res) => {
-  console.log("inside get users/new:");
   const userId = req.session["userId"];
   checkUser(userId)
     .then((userFound) => {
@@ -75,7 +74,6 @@ router.get('/users/:userid', (req, res) => {
         // if user exists (true) render users view
         Promise.all([getUserPosts(userId), getUserLikedPosts(userId), getUser(userId)])
           .then(([posts, posts1, user]) => {
-            console.log("user::", user);
             const templateVars = { posts, posts1, user: user[0] };
             res.render("userDetails", templateVars);
           })
@@ -92,7 +90,6 @@ router.get('/users/:userid', (req, res) => {
 
 //to save or update user Details in db
 router.post('/users/:userid', (req, res) => { //save button
-  console.log("inside post /users/:userid");
   const username = req.body.username;
   const email = req.body.email;
   const password = req.body.password;
@@ -101,7 +98,6 @@ router.post('/users/:userid', (req, res) => { //save button
   const userId = req.session["userId"];
   updateUserDetails(username, email, password, firstName, lastName, userId)
     .then((userDetails) => {
-      console.log("userDetails::", userDetails);
       // const userId = userDetails[0].id;
       res.redirect("/users/" + userId);
     })

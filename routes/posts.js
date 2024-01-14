@@ -12,19 +12,15 @@ router.use(express.json());
 // Queries
 const { getPost, getComments, getLikes, getRating } = require('../db/queries/getPost');
 const { addComment, addRating, addLike } = require('../db/queries/insertQueries');
-
 const { getAllPosts } = require('../db/queries/allPosts');
-
 const { getUser } = require("../db/queries/users.js");
 
 /////////////////////// GET REQUESTS ///////////////////////
 // Home page
 router.get('/', (req, res) => {
-  console.log("inside get / ,posts.js::");
   const userId = req.session["userId"];
   Promise.all([getAllPosts(), getUser(userId)])
     .then(([posts, user]) => {
-      console.log("user::", user);
       const templateVars = { posts, user: user[0] };
       res.render('index', templateVars);
     })
@@ -46,7 +42,6 @@ router.get('/posts/:id', (req, res) => {
     getUser(userId)
   ])
     .then(([post, comments, likes, rating, user]) => {
-      console.log("post::", post[0]);
       const templateVars = {
         post: post[0],
         comments: comments,
@@ -54,7 +49,6 @@ router.get('/posts/:id', (req, res) => {
         rating: rating[0],
         user: user[0]
       };
-      console.log("templateVars:", templateVars);
       res.render('post', templateVars);
     })
     .catch((err) => {
